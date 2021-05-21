@@ -9,8 +9,23 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, orbital!")
-            .padding()
+        Text("")
+    }
+}
+
+struct Grouping<Content: View>: View {
+    var title: String
+    var icon: String
+    var content: () -> Content
+    
+    var body: some View {
+        NavigationLink(destination: GroupView(title: title, content: content)) {
+            #if os(iOS)
+            Label(title, systemImage: icon).font(.headline).padding(.vertical, 8)
+            #else
+            Label(title, systemImage: icon)
+            #endif
+        }
     }
 }
 

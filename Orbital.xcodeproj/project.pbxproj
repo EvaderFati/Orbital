@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4500E101265541E00022E55B /* GroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4500E100265541E00022E55B /* GroupView.swift */; };
+		4500E10426554A780022E55B /* Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4500E10326554A780022E55B /* Locations.swift */; };
+		4500E1062656A8100022E55B /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4500E1052656A8100022E55B /* SearchBar.swift */; };
+		4500E1082657662B0022E55B /* TableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4500E1072657662B0022E55B /* TableRow.swift */; };
+		4500E10B2657B8AD0022E55B /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4500E10A2657B8AD0022E55B /* TabBar.swift */; };
 		45EFDAC0264AA86200881442 /* OrbitalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EFDABF264AA86200881442 /* OrbitalApp.swift */; };
 		45EFDAC2264AA86200881442 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EFDAC1264AA86200881442 /* ContentView.swift */; };
 		45EFDAC4264AA86300881442 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45EFDAC3264AA86300881442 /* Assets.xcassets */; };
@@ -33,6 +38,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4500E100265541E00022E55B /* GroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupView.swift; sourceTree = "<group>"; };
+		4500E10326554A780022E55B /* Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locations.swift; sourceTree = "<group>"; };
+		4500E1052656A8100022E55B /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		4500E1072657662B0022E55B /* TableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableRow.swift; sourceTree = "<group>"; };
+		4500E10A2657B8AD0022E55B /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		45EFDABC264AA86200881442 /* Orbital.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orbital.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45EFDABF264AA86200881442 /* OrbitalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitalApp.swift; sourceTree = "<group>"; };
 		45EFDAC1264AA86200881442 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -72,6 +82,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4500E109265766E00022E55B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		45EFDAB3264AA86200881442 = {
 			isa = PBXGroup;
 			children = (
@@ -97,6 +114,8 @@
 			children = (
 				45EFDABF264AA86200881442 /* OrbitalApp.swift */,
 				45EFDAC1264AA86200881442 /* ContentView.swift */,
+				45EFDAF326530B1400881442 /* View */,
+				4500E109265766E00022E55B /* Resources */,
 				45EFDAC3264AA86300881442 /* Assets.xcassets */,
 				45EFDAC8264AA86300881442 /* Info.plist */,
 				45EFDAC5264AA86300881442 /* Preview Content */,
@@ -128,6 +147,18 @@
 				45EFDADE264AA86300881442 /* Info.plist */,
 			);
 			path = OrbitalUITests;
+			sourceTree = "<group>";
+		};
+		45EFDAF326530B1400881442 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4500E100265541E00022E55B /* GroupView.swift */,
+				4500E1052656A8100022E55B /* SearchBar.swift */,
+				4500E10326554A780022E55B /* Locations.swift */,
+				4500E1072657662B0022E55B /* TableRow.swift */,
+				4500E10A2657B8AD0022E55B /* TabBar.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +292,11 @@
 			files = (
 				45EFDAC2264AA86200881442 /* ContentView.swift in Sources */,
 				45EFDAC0264AA86200881442 /* OrbitalApp.swift in Sources */,
+				4500E1062656A8100022E55B /* SearchBar.swift in Sources */,
+				4500E10426554A780022E55B /* Locations.swift in Sources */,
+				4500E101265541E00022E55B /* GroupView.swift in Sources */,
+				4500E1082657662B0022E55B /* TableRow.swift in Sources */,
+				4500E10B2657B8AD0022E55B /* TabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

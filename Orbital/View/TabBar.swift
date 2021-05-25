@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TabBar: View {
+    var barNum: Int
+    
     var body: some View {
         VStack {
             HStack(spacing: 50) {
@@ -17,7 +19,7 @@ struct TabBar: View {
                     Text("Browse")
                         .font(.system(size: 10))
                 }
-                .foregroundColor(.blue)
+                .foregroundColor(barNum == 0 ? .blue : .gray)
                 .frame(width: 76, height: 49, alignment: .center)
                 
                 VStack {
@@ -26,7 +28,7 @@ struct TabBar: View {
                     Text("Search")
                         .font(.system(size: 10))
                 }
-                .foregroundColor(.gray)
+                .foregroundColor(barNum == 1 ? .blue : .gray)
                 .frame(width: 76, height: 49, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 
                 VStack {
@@ -35,7 +37,7 @@ struct TabBar: View {
                     Text("User")
                         .font(.system(size: 10))
                 }
-                .foregroundColor(.gray)
+                .foregroundColor(barNum == 2 ? .blue : .gray)
                 .frame(width: 76, height: 49, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
             }
             
@@ -46,7 +48,7 @@ struct TabBar: View {
 
 struct TabBar_Previews: PreviewProvider {
     static var previews: some View {
-        TabBar()
+        TabBar(barNum: 0)
             .previewLayout(.fixed(width: 375, height: 83))
     }
 }

@@ -6,10 +6,13 @@
 //
 
 import SwiftUI
+import Foundation
 
 struct LocationView: View {
     @State private var locations: [Location] = Location.data[0].locationsInside!
     @State private var isPopoverPresented = false
+    @State private var isNewFolderPresented = false
+    @State private var newLocationData = Location.Data()
     
     var body: some View {
         NavigationView {
@@ -30,17 +33,30 @@ struct LocationView: View {
             }
             .navigationBarTitle("Home")
             .navigationBarItems(trailing: {
+                // The pop-up menu after clicking '+' button
                 Menu {
                     Button(action: {}) {
                         Label("New photo", systemImage: "photo")
                     }
-                    Button(action: {}) {
-                        Label("New folder", systemImage: "folder")
+                    Button(action: { isNewFolderPresented = true }) {
+                        Label("New folder", systemImage: "folder.badge.plus")
                     }
                 } label: {
                     Image(systemName: "plus")
                 }
             }())
+        }
+        .sheet(isPresented: $isNewFolderPresented) {
+            NavigationView {
+                CreateFolderView(locationData: $newLocationData)
+                    .navigationBarItems(leading: Button("Cancel") {
+                        isNewFolderPresented = false
+                    }, trailing: Button("Add") {
+                        let newLocation = Location(name: newLocationData.name, isFolder: true, numOfItems: 0, locked: newLocationData.locked, date: Date(), locationsInside: nil)
+                        locations.append(newLocation)
+                        isNewFolderPresented = false
+                    })
+            }
         }
     }
     

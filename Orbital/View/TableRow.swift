@@ -13,6 +13,11 @@ struct TableRow: View {
     
     var body: some View {
         HStack {
+            Image(systemName: location.isFolder ? "folder" : "photo")
+                .padding(.leading)
+                .foregroundColor(.blue)
+                .font(.system(size: 20))
+            
             VStack(alignment: .leading) {
                 Text(location.name)
                 Text("\(dateToString(location.date)) - \(location.numOfItems) items")

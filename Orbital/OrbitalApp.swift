@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct OrbitalApp: App {
+    @State private var location = Location.data
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                LocationView(location: $location[0])
+            }
         }
     }
 }

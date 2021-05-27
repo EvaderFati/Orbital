@@ -4,6 +4,7 @@
 //
 //  Created by Evader on 19/5/21.
 //
+
 import SwiftUI
 import Foundation
 
@@ -26,15 +27,14 @@ struct LocationView: View {
         VStack {
             SearchBar()
             
-            ScrollView {
+            List {
                 ForEach(location.locationsInside) { loc in
                     NavigationLink(destination: LocationView(location: binding(for:loc))) {
                         TableRow(location: binding(for: loc))
                     }
                 }
-                .listStyle(InsetListStyle())
             }
-
+            .listStyle(InsetListStyle())
             
             TabBar(barNum: 0)
                 .frame(height: 49)

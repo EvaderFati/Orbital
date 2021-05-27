@@ -4,7 +4,6 @@
 //
 //  Created by Evader on 21/5/21.
 //
-
 import SwiftUI
 import Foundation
 
@@ -43,7 +42,7 @@ struct TableRow: View {
 
 struct TableRow_Previews: PreviewProvider {
     static var previews: some View {
-        TableRow(location: .constant(Location.data[0].locationsInside![0]))
+        TableRow(location: .constant(Location.data[0].locationsInside[0]))
             .previewLayout(.fixed(width: 375, height: 60))
     }
 }

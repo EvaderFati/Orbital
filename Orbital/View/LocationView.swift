@@ -14,38 +14,46 @@ struct LocationView: View {
     @State private var isNewFolderPresented = false
     @State private var newLocationData = Location.Data()
     
+    init(location: Binding<Location>) {
+        self._location = location
+        // Removing navigation bar bottom border
+        let appearance = UINavigationBarAppearance()
+        appearance.shadowColor = .clear
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
+    
     var body: some View {
-        NavigationView {
-            VStack {
-                SearchBar()
-                
-                List {
-                    ForEach(location.locationsInside) { loc in
-                        NavigationLink(destination: Text("")) {
-                            TableRow(location: binding(for: loc))
-                        }
+        VStack {
+            SearchBar()
+            
+            List {
+                ForEach(location.locationsInside) { loc in
+                    NavigationLink(destination: LocationView(location: binding(for:loc))) {
+                        TableRow(location: binding(for: loc))
                     }
                 }
-                .listStyle(InsetListStyle())
-                
-                TabBar(barNum: 0)
-                    .frame(height: 49)
             }
-            .navigationBarTitle(location.name)
-            .navigationBarItems(trailing: {
-                // The pop-up menu after clicking '+' button
-                Menu {
-                    Button(action: {}) {
-                        Label("New photo", systemImage: "photo")
-                    }
-                    Button(action: { isNewFolderPresented = true }) {
-                        Label("New folder", systemImage: "folder.badge.plus")
-                    }
-                } label: {
-                    Image(systemName: "plus")
-                }
-            }())
+            .listStyle(InsetListStyle())
+            
+            TabBar(barNum: 0)
+                .frame(height: 49)
         }
+    
+        .navigationBarTitle(location.name, displayMode: .inline)
+        .navigationBarItems(trailing: {
+            // The pop-up menu after clicking '+' button
+            Menu {
+                Button(action: {}) {
+                    Label("New photo", systemImage: "photo")
+                }
+                Button(action: { isNewFolderPresented = true }) {
+                    Label("New folder", systemImage: "folder.badge.plus")
+                }
+            } label: {
+                Image(systemName: "plus")
+            }
+        }())
         .sheet(isPresented: $isNewFolderPresented) {
             NavigationView {
                 CreateFolderView(locationData: $newLocationData)
@@ -70,6 +78,8 @@ struct LocationView: View {
 
 struct LocationsView_Previews: PreviewProvider {
     static var previews: some View {
-        LocationView(location: .constant(Location.data[0]))
+        NavigationView {
+            LocationView(location: .constant(Location.data[0]))
+        }
     }
 }

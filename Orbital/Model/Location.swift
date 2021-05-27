@@ -31,7 +31,9 @@ extension Location {
     static var data: [Location] {
         [
             Location(name: "Home", isFolder: true, numOfItems: 3, locked: false, date: Date(timeIntervalSinceNow: -237 * 86400), locationsInside: [
-                Location(name: "Kitchen", isFolder: false, numOfItems: 5, locked: false, date: Date(timeIntervalSinceNow: -178 * 86400), locationsInside: []),
+                Location(name: "Kitchen", isFolder: false, numOfItems: 5, locked: false, date: Date(timeIntervalSinceNow: -178 * 86400), locationsInside: [
+                    Location(name: "Bedroom 1", isFolder: true, numOfItems: 2, locked: true, date: Date(timeIntervalSinceNow: -168 * 86400), locationsInside: [])
+                ]),
                 Location(name: "Bedroom 1", isFolder: true, numOfItems: 2, locked: true, date: Date(timeIntervalSinceNow: -168 * 86400), locationsInside: []),
                 Location(name: "Bedroom 2", isFolder: true, numOfItems: 3, locked: true, date: Date(timeIntervalSinceNow: -98 * 86400), locationsInside: []),
                 Location(name: "Kitchen", isFolder: true, numOfItems: 5, locked: false, date: Date(timeIntervalSinceNow: -178 * 86400), locationsInside: []),

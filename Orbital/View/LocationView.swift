@@ -33,7 +33,6 @@ struct LocationView: View {
                     }
                 }
                 .listStyle(InsetListStyle())
-                
             }
 
             

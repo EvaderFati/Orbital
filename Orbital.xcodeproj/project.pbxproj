@@ -24,7 +24,6 @@
 		4E4A9EC0265E4DFB00AA9553 /* BigLocationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4A9EBF265E4DFB00AA9553 /* BigLocationRow.swift */; };
 		4E4A9EC2265E603200AA9553 /* RecentDeletedRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4A9EC1265E603200AA9553 /* RecentDeletedRow.swift */; };
 		4E4A9EC4265EA26200AA9553 /* RecentDeletedPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4A9EC3265EA26200AA9553 /* RecentDeletedPage.swift */; };
-		4E4A9EC6265F561F00AA9553 /* BrowseList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4A9EC5265F561F00AA9553 /* BrowseList.swift */; };
 		4E4A9EC8265F742A00AA9553 /* exstar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4A9EC7265F742A00AA9553 /* exstar.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,7 +68,6 @@
 		4E4A9EBF265E4DFB00AA9553 /* BigLocationRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BigLocationRow.swift; sourceTree = "<group>"; };
 		4E4A9EC1265E603200AA9553 /* RecentDeletedRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDeletedRow.swift; sourceTree = "<group>"; };
 		4E4A9EC3265EA26200AA9553 /* RecentDeletedPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentDeletedPage.swift; sourceTree = "<group>"; };
-		4E4A9EC5265F561F00AA9553 /* BrowseList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseList.swift; sourceTree = "<group>"; };
 		4E4A9EC7265F742A00AA9553 /* exstar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = exstar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,7 +178,6 @@
 				4500E100265541E00022E55B /* GroupView.swift */,
 				4500E10326554A780022E55B /* LocationView.swift */,
 				4E4A9EBD265E491100AA9553 /* BrowseView.swift */,
-				4E4A9EC5265F561F00AA9553 /* BrowseList.swift */,
 				4E4A9EC1265E603200AA9553 /* RecentDeletedRow.swift */,
 				4E4A9EC7265F742A00AA9553 /* exstar.swift */,
 				4E4A9EC3265EA26200AA9553 /* RecentDeletedPage.swift */,
@@ -328,7 +325,6 @@
 				4E4A9EBE265E491100AA9553 /* BrowseView.swift in Sources */,
 				45098AA6265CFA9800C37C42 /* Location.swift in Sources */,
 				4E4A9EC8265F742A00AA9553 /* exstar.swift in Sources */,
-				4E4A9EC6265F561F00AA9553 /* BrowseList.swift in Sources */,
 				4500E1062656A8100022E55B /* SearchBar.swift in Sources */,
 				4500E10426554A780022E55B /* LocationView.swift in Sources */,
 				4E4A9EC0265E4DFB00AA9553 /* BigLocationRow.swift in Sources */,

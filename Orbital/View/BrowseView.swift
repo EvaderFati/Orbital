@@ -38,11 +38,7 @@ struct BrowseView: View {
                 .textCase(.none)
             }
             .listStyle(InsetGroupedListStyle())
-            
-            TabBar(barNum: 0)
-                .frame(height: 49)
         }
-        .navigationTitle("Browse")
     }
     
     private func binding(for loc: Location) -> Binding<Location> {
@@ -55,8 +51,6 @@ struct BrowseView: View {
 
 struct BrowseView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            BrowseView()
-        }
+        BrowseView()
     }
 }

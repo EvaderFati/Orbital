@@ -11,8 +11,8 @@
 		4500E10426554A780022E55B /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4500E10326554A780022E55B /* LocationView.swift */; };
 		4507CB64265E111C00538FCE /* CreateFolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4507CB63265E111C00538FCE /* CreateFolderView.swift */; };
 		45098AA6265CFA9800C37C42 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45098AA5265CFA9800C37C42 /* Location.swift */; };
+		450F9BBE26608B9B008CAE4C /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450F9BBD26608B9B008CAE4C /* TabBar.swift */; };
 		45AFC8C7265FCD8900C129AB /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AFC8C6265FCD8900C129AB /* SearchBar.swift */; };
-		45AFC8C9265FCDB200C129AB /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AFC8C8265FCDB200C129AB /* TabBar.swift */; };
 		45AFC8CB265FCDCF00C129AB /* TableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45AFC8CA265FCDCF00C129AB /* TableRow.swift */; };
 		45EFDAC0264AA86200881442 /* OrbitalApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EFDABF264AA86200881442 /* OrbitalApp.swift */; };
 		45EFDAC2264AA86200881442 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EFDAC1264AA86200881442 /* ContentView.swift */; };
@@ -45,8 +45,8 @@
 		4500E10326554A780022E55B /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
 		4507CB63265E111C00538FCE /* CreateFolderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFolderView.swift; sourceTree = "<group>"; };
 		45098AA5265CFA9800C37C42 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		450F9BBD26608B9B008CAE4C /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		45AFC8C6265FCD8900C129AB /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		45AFC8C8265FCDB200C129AB /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
 		45AFC8CA265FCDCF00C129AB /* TableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableRow.swift; sourceTree = "<group>"; };
 		45EFDABC264AA86200881442 /* Orbital.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Orbital.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		45EFDABF264AA86200881442 /* OrbitalApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitalApp.swift; sourceTree = "<group>"; };
@@ -99,8 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				45AFC8C6265FCD8900C129AB /* SearchBar.swift */,
-				45AFC8C8265FCDB200C129AB /* TabBar.swift */,
 				45AFC8CA265FCDCF00C129AB /* TableRow.swift */,
+				450F9BBD26608B9B008CAE4C /* TabBar.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -315,7 +315,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45AFC8C9265FCDB200C129AB /* TabBar.swift in Sources */,
 				45EFDAC2264AA86200881442 /* ContentView.swift in Sources */,
 				45EFDAC0264AA86200881442 /* OrbitalApp.swift in Sources */,
 				4E4A9EBE265E491100AA9553 /* BrowseView.swift in Sources */,
@@ -325,6 +324,7 @@
 				45AFC8CB265FCDCF00C129AB /* TableRow.swift in Sources */,
 				4507CB64265E111C00538FCE /* CreateFolderView.swift in Sources */,
 				4500E101265541E00022E55B /* GroupView.swift in Sources */,
+				450F9BBE26608B9B008CAE4C /* TabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

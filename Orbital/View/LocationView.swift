@@ -14,32 +14,44 @@ struct LocationView: View {
     @State private var isNewFolderPresented = false
     @State private var newLocationData = Location.Data()
     
-    init(location: Binding<Location>) {
-        self._location = location
-        // Removing navigation bar bottom border
-        let appearance = UINavigationBarAppearance()
-        appearance.shadowColor = .clear
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-    }
-    
     var body: some View {
-        VStack {
-            SearchBar()
-            
-            List {
-                ForEach(location.locationsInside) { loc in
-                    NavigationLink(destination: LocationView(location: binding(for:loc))) {
-                        TableRow(location: binding(for: loc))
+        TabView {
+            VStack {
+                SearchBar()
+                
+                List {
+                    ForEach(location.locationsInside) { loc in
+                        NavigationLink(destination: LocationView(location: binding(for:loc))) {
+                            TableRow(location: binding(for: loc))
+                        }
                     }
                 }
+                .listStyle(InsetListStyle())
             }
-            .listStyle(InsetListStyle())
-            
-            TabBar(barNum: 0)
-                .frame(height: 49)
+            .tabItem {
+                Image(systemName: "folder.fill")
+                    .font(.system(size: 22))
+                Text("Browse")
+                    .font(.system(size: 10))
+            }
+            .tag(0)
+            Text("")
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                        .font(.system(size: 22, weight: .semibold))
+                    Text("Search")
+                        .font(.system(size: 10))
+                }
+                .tag(1)
+            Text("")
+                .tabItem {
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 24))
+                    Text("User")
+                        .font(.system(size: 10))
+                }
+                .tag(2)
         }
-    
         .navigationBarTitle(location.name, displayMode: .inline)
         .navigationBarItems(trailing: {
             // The pop-up menu after clicking '+' button

@@ -15,48 +15,21 @@ struct LocationView: View {
     @State private var newLocationData = Location.Data()
     
     var body: some View {
-        TabView {
-            VStack {
-                SearchBar()
-                
-                List {
-                    ForEach(location.locationsInside) { loc in
-                        NavigationLink(destination: LocationView(location: binding(for:loc))) {
-                            TableRow(location: binding(for: loc))
-                        }
-                    }
-                    .onDelete(perform: { indexSet in
-                        location.locationsInside.remove(atOffsets: indexSet)
-                    })
-                }
-                .listStyle(InsetListStyle())
-            }
-            .tabItem {
-                Image(systemName: "folder.fill")
-                    .font(.system(size: 22))
-                Text("Browse")
-                    .font(.system(size: 10))
-            }
-            .tag(0)
+        VStack {
+            SearchBar()
             
-            // TODO
-            Text("")
-                .tabItem {
-                    Image(systemName: "magnifyingglass")
-                        .font(.system(size: 22, weight: .semibold))
-                    Text("Search")
-                        .font(.system(size: 10))
+            List {
+                ForEach(location.locationsInside, id: \.self) { loc in
+                    NavigationLink(destination: LocationView(location: binding(for:loc))) {
+                        TableRow(location: binding(for: loc))
+                    }
                 }
-                .tag(1)
-            Text("")
-                .tabItem {
-                    Image(systemName: "person.fill")
-                        .font(.system(size: 24))
-                    Text("User")
-                        .font(.system(size: 10))
-                }
-                .tag(2)
+                .onDelete(perform: { indexSet in
+                    location.locationsInside.remove(atOffsets: indexSet)
+                })
+            }
         }
+            
         .navigationBarTitle(location.name, displayMode: .inline)
         .navigationBarItems(trailing: {
             // The pop-up menu after clicking '+' button

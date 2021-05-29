@@ -17,7 +17,7 @@ struct BrowseView: View {
                 Section(header: Text("Locations")
                             .font(.headline)
                             .foregroundColor(.black)) {
-                    ForEach(locations) { location in
+                    ForEach(locations, id: \.self) { location in
                         NavigationLink(
                             destination: LocationView(location: binding(for: location))) {
                             Label(location.name, systemImage: "folder")
@@ -39,6 +39,7 @@ struct BrowseView: View {
             }
             .listStyle(InsetGroupedListStyle())
         }
+        .navigationTitle("Browse")
     }
     
     private func binding(for loc: Location) -> Binding<Location> {
@@ -51,6 +52,8 @@ struct BrowseView: View {
 
 struct BrowseView_Previews: PreviewProvider {
     static var previews: some View {
-        BrowseView()
+        NavigationView {
+            BrowseView()
+        }
     }
 }

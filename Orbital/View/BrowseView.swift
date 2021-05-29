@@ -38,9 +38,6 @@ struct BrowseView: View {
                 .textCase(.none)
             }
             .listStyle(InsetGroupedListStyle())
-            
-            TabBar(barNum: 0)
-                .frame(height: 49)
         }
         .navigationTitle("Browse")
     }

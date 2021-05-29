@@ -9,6 +9,9 @@ import SwiftUI
 import Foundation
 
 struct LocationView: View {
+    @State private var showingImagePicker = false
+    @State private var image: Image?
+    @State private var inputImage: UIImage?
     @Binding var location: Location
     @State private var isPopoverPresented = false
     @State private var isNewFolderPresented = false
@@ -35,16 +38,13 @@ struct LocationView: View {
                 }
             }
             .listStyle(InsetListStyle())
-            
-            TabBar(barNum: 0)
-                .frame(height: 49)
         }
     
         .navigationBarTitle(location.name, displayMode: .inline)
         .navigationBarItems(trailing: {
             // The pop-up menu after clicking '+' button
             Menu {
-                Button(action: {}) {
+                Button(action: {showingImagePicker = true}) {
                     Label("New photo", systemImage: "photo")
                 }
                 Button(action: { isNewFolderPresented = true }) {
@@ -54,6 +54,9 @@ struct LocationView: View {
                 Image(systemName: "plus")
             }
         }())
+        .sheet(isPresented: $showingImagePicker, onDismiss: loadImage) {
+            ImagePicker(image: self.$inputImage)
+        }
         .sheet(isPresented: $isNewFolderPresented) {
             NavigationView {
                 CreateFolderView(locationData: $newLocationData)
@@ -67,6 +70,13 @@ struct LocationView: View {
             }
         }
     }
+        
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
+    }
+
+
     
     private func binding(for loc: Location) -> Binding<Location> {
         guard let locationIndex = location.locationsInside.firstIndex(where: {$0.id == loc.id}) else {

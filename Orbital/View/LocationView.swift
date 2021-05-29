@@ -25,6 +25,9 @@ struct LocationView: View {
                             TableRow(location: binding(for: loc))
                         }
                     }
+                    .onDelete(perform: { indexSet in
+                        location.locationsInside.remove(atOffsets: indexSet)
+                    })
                 }
                 .listStyle(InsetListStyle())
             }
@@ -35,6 +38,8 @@ struct LocationView: View {
                     .font(.system(size: 10))
             }
             .tag(0)
+            
+            // TODO
             Text("")
                 .tabItem {
                     Image(systemName: "magnifyingglass")
@@ -66,6 +71,8 @@ struct LocationView: View {
                 Image(systemName: "plus")
             }
         }())
+        
+        // An Add-New-Folder sheet
         .sheet(isPresented: $isNewFolderPresented) {
             NavigationView {
                 CreateFolderView(locationData: $newLocationData)

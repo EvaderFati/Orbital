@@ -71,6 +71,7 @@
 		4521DF702684BF7400D3F115 /* Where */ = {
 			isa = PBXGroup;
 			children = (
+				454E24F626884D6100EEF0A4 /* ViewModel */,
 				454E24E626856D6000EEF0A4 /* Model */,
 				454E24E526856D4C00EEF0A4 /* View */,
 				4521DF712684BF7400D3F115 /* WhereApp.swift */,
@@ -108,9 +109,16 @@
 				454E24E726856D7100EEF0A4 /* Folder.swift */,
 				454E24E92685C67D00EEF0A4 /* PhotoPicker.swift */,
 				454E24ED2685D08B00EEF0A4 /* Photo.swift */,
-				454E24F4268848B900EEF0A4 /* PhotoVM.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		454E24F626884D6100EEF0A4 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				454E24F4268848B900EEF0A4 /* PhotoVM.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

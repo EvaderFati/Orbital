@@ -42,7 +42,7 @@ struct FolderView: View {
                 }
                 .onDelete(perform: deleteFolders)
                 ForEach(photos) { photo in
-                    NavigationLink(destination: Text("Hello")) {
+                    NavigationLink(destination: PhotoView(photo: photo)) {
                         PhotoListEntry(photo: photo)
                     }
                 }

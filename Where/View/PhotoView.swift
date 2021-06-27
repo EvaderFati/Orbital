@@ -57,9 +57,7 @@ struct PhotoView: View {
                 }
                 .listStyle(InsetGroupedListStyle())
             }
-            .navigationBarItems(leading: Button("Cancel") {
-                presentationMode.wrappedValue.dismiss()
-            }, trailing: Button("Add") {
+            .navigationBarItems(trailing: Button("Add") {
                 Photo.update(from: photo, context: viewContext)
                 presentationMode.wrappedValue.dismiss()
             })

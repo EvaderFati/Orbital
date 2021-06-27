@@ -56,15 +56,14 @@ extension Photo {
         newPhoto.date = Date()
         newPhoto.folder = folder
         newPhoto.image = image
-        print("Created a new Photo instance")
     }
     
-    static func createPhoto(_ newPhoto: Photo, name: String, image: UIImage, folder: Folder?) {
-        newPhoto.name = name
-        newPhoto.date = Date()
-        newPhoto.image = image
-        newPhoto.folder = folder
-    }
+//    static func createPhoto(_ newPhoto: Photo, name: String, image: UIImage, folder: Folder?) {
+//        newPhoto.name = name
+//        newPhoto.date = Date()
+//        newPhoto.image = image
+//        newPhoto.folder = folder
+//    }
     
     static func update(from photo: Photo, context: NSManagedObjectContext) {
         photo.objectWillChange.send()

@@ -12,7 +12,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.managedObjectContext) var viewContext
 
-    @ObservedObject var photo: Photo
+    @ObservedObject var photo: PhotoVM
     @State private var selectedImage: UIImage?
     let folder: Folder?
         
@@ -50,13 +50,9 @@ struct PhotoPicker: UIViewControllerRepresentable {
                         DispatchQueue.main.async {
                             self.parent.selectedImage = selectedImage as? UIImage
                             if let image = self.parent.selectedImage {
-                                Photo.createPhoto(image: image, folder: self.parent.folder, context: self.parent.viewContext)
-                                do {
-                                    try self.parent.viewContext.save()
-                                } catch {
-                                    let nsError = error as NSError
-                                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                                }
+                                self.parent.photo.image = image
+                                self.parent.photo.folder = self.parent.folder
+                                self.parent.photo.createPhoto(context: self.parent.viewContext)
                             }
                         }
                     }

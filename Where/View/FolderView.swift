@@ -19,7 +19,7 @@ struct FolderView: View {
     @State private var newFolderName = ""
     @State private var newFolderIsLocked = false
 //    @State private var inputImage: UIImage? = nil
-    @State private var newPhoto: Photo = Photo()
+    @State private var newPhoto: PhotoVM = PhotoVM()
 
     let parent: Folder?
     

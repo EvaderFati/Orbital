@@ -19,7 +19,7 @@ struct FolderView: View {
     @State private var newFolderName = ""
     @State private var newFolderIsLocked = false
 //    @State private var inputImage: UIImage? = nil
-    @State private var newPhoto: PhotoVM = PhotoVM()
+    @State private var newPhoto: Photo = Photo()
 
     let parent: Folder?
     
@@ -84,9 +84,7 @@ struct FolderView: View {
                     }, trailing: Button(action: addFolder, label: { Text("Add") }))
             }
         }
-        .sheet(isPresented: $isImportingPhoto, onDismiss: {
-            parent?.objectWillChange.send()
-        }) {
+        .sheet(isPresented: $isImportingPhoto) {
             PhotoPicker(photo: newPhoto, folder: parent)
         }
 //        .background(

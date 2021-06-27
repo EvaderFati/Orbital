@@ -20,7 +20,6 @@
 		454E24EC2685C6A900EEF0A4 /* EditPhotosView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E24EB2685C6A900EEF0A4 /* EditPhotosView.swift */; };
 		454E24EE2685D08B00EEF0A4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E24ED2685D08B00EEF0A4 /* Photo.swift */; };
 		454E24F02686022100EEF0A4 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E24EF2686022100EEF0A4 /* PhotoView.swift */; };
-		454E24F326880E7800EEF0A4 /* PhotoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E24F226880E7800EEF0A4 /* PhotoVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,7 +37,6 @@
 		454E24EB2685C6A900EEF0A4 /* EditPhotosView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhotosView.swift; sourceTree = "<group>"; };
 		454E24ED2685D08B00EEF0A4 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		454E24EF2686022100EEF0A4 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
-		454E24F226880E7800EEF0A4 /* PhotoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +69,6 @@
 		4521DF702684BF7400D3F115 /* Where */ = {
 			isa = PBXGroup;
 			children = (
-				454E24F126880E4900EEF0A4 /* ViewModel */,
 				454E24E626856D6000EEF0A4 /* Model */,
 				454E24E526856D4C00EEF0A4 /* View */,
 				4521DF712684BF7400D3F115 /* WhereApp.swift */,
@@ -111,14 +108,6 @@
 				454E24ED2685D08B00EEF0A4 /* Photo.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		454E24F126880E4900EEF0A4 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				454E24F226880E7800EEF0A4 /* PhotoVM.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,7 +185,6 @@
 				4521DF7E2684BF7500D3F115 /* Where.xcdatamodeld in Sources */,
 				454E24EC2685C6A900EEF0A4 /* EditPhotosView.swift in Sources */,
 				454E24EE2685D08B00EEF0A4 /* Photo.swift in Sources */,
-				454E24F326880E7800EEF0A4 /* PhotoVM.swift in Sources */,
 				454E24F02686022100EEF0A4 /* PhotoView.swift in Sources */,
 				4521DF742684BF7400D3F115 /* ContentView.swift in Sources */,
 				454E24EA2685C67D00EEF0A4 /* PhotoPicker.swift in Sources */,

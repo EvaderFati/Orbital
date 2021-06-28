@@ -25,6 +25,10 @@ struct PhotoView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 0.9 * geo.size.width)
                         .cornerRadius(20)
+//                        .gesture(
+//                            TapGesture()
+//                                .onEnded(<#T##action: (()) -> Void##(()) -> Void#>)
+//                        )
                 }
                 .frame(width: geo.size.width)
                 
@@ -62,6 +66,11 @@ struct PhotoView: View {
                 presentationMode.wrappedValue.dismiss()
             })
         }
+        .background (
+            NavigationLink(destination: EditPhotoView(photo: photo), isActive: $addNewItem) {
+                EmptyView()
+            }
+        )
     }
 }
 

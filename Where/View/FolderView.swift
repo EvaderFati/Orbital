@@ -211,7 +211,7 @@ struct PhotoListEntry: View {
                 .padding(.leading)
                 .foregroundColor(.blue)
                 .font(.system(size: 20))
-            VStack {
+            VStack(alignment: .leading) {
                 Text(photo.name ?? "Untitled")
                 Text("\(dateToString(photo.date))")
                     .font(.system(size: 15))

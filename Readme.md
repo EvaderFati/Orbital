@@ -1,6 +1,7 @@
 # Where
 ## 🗓 Todos
 - **Edit photos**
+- Edit folders
 - Duplicate folder/photo names
 - Add popup when deleting a folder with children
 - Check whether the data type of 'children' & 'photos' are NSSet

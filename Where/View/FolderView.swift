@@ -50,16 +50,18 @@ struct FolderView: View {
             }
         }
         .navigationBarTitle(parent?.name ?? "Browse", displayMode: .inline)
-        .navigationBarItems(trailing: {
-            Menu {
-                Button(action: { isAddingPhoto = true}) {
-                    Label("New Photo", systemImage: "photo")
-                }
-                Button(action: { isAddingFolder = true }) {
-                    Label("New Folder", systemImage: "folder.badge.plus")
-                }
-            } label: { Image(systemName: "ellipsis.circle") }
-        }())
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Menu {
+                    Button(action: { isAddingPhoto = true}) {
+                        Label("New Photo", systemImage: "photo")
+                    }
+                    Button(action: { isAddingFolder = true }) {
+                        Label("New Folder", systemImage: "folder.badge.plus")
+                    }
+                } label: { Image(systemName: "ellipsis.circle") }
+            }
+        }
         .actionSheet(isPresented: $isAddingPhoto) {
             ActionSheet(title: Text("Add photos"),
                         message: Text("Choose between the following"),
@@ -188,7 +190,11 @@ struct FolderListEntry: View {
                 .font(.system(size: 20))
             VStack(alignment: .leading) {
                 Text(folder.name ?? "Untitled")
-                Text("\(dateToString(folder.date)) - \(folder.numOfItems)")
+                Text(folder.numOfItems == 0
+                     ? "\(dateToString(folder.date)) - empty"
+                     : folder.numOfItems == 1
+                        ? "\(dateToString(folder.date)) - \(folder.numOfItems) item"
+                        : "\(dateToString(folder.date)) - \(folder.numOfItems)")
                     .font(.system(size: 15))
                     .foregroundColor(.secondary)
             }.padding()

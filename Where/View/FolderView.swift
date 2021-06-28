@@ -186,9 +186,9 @@ struct FolderListEntry: View {
                 .padding(.leading)
                 .foregroundColor(.blue)
                 .font(.system(size: 20))
-            VStack {
+            VStack(alignment: .leading) {
                 Text(folder.name ?? "Untitled")
-                Text("\(dateToString(folder.date))")
+                Text("\(dateToString(folder.date)) - \(folder.numOfItems)")
                     .font(.system(size: 15))
                     .foregroundColor(.secondary)
             }.padding()

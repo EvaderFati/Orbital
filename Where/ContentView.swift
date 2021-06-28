@@ -7,6 +7,7 @@
 
 import SwiftUI
 import CoreData
+import AuthenticationServices
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -48,7 +49,9 @@ struct ContentView: View {
                         .font(.system(size: 10))
                 }
                 .tag(1)
-            NavigationView { Text("User") }
+            NavigationView { UserView(
+                loggedIn: checkAutoLogin(),
+                userName: UserDefaults.standard.string(forKey: "AppleUserFirstName") ?? "") }
                 .tabItem {
                     Image(systemName: "person.fill")
                         .font(.system(size: 24))
@@ -59,6 +62,19 @@ struct ContentView: View {
         }
     }
 
+    private func checkAutoLogin() -> Bool {
+        let userId = UserDefaults.standard.string(forKey: "AppleUserID") ?? ""
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        
+        appleIDProvider.getCredentialState(forUserID: userId) { (credentialState, error) in
+            if credentialState == .authorized {
+                print("Auto login successful")
+            } else {
+                print("Auto login not successful")
+            }
+        }
+        return userId == "" ? false : true
+    }
 //    private func addItem() {
 //        withAnimation {
 //            let newFolder = Folder(context: viewContext)

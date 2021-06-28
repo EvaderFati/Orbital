@@ -58,7 +58,7 @@ struct FolderView: View {
                 Button(action: { isAddingFolder = true }) {
                     Label("New Folder", systemImage: "folder.badge.plus")
                 }
-            } label: { Image(systemName: "plus") }
+            } label: { Image(systemName: "ellipsis.circle") }
         }())
         .actionSheet(isPresented: $isAddingPhoto) {
             ActionSheet(title: Text("Add photos"),

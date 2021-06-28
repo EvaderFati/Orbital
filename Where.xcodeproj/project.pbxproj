@@ -21,6 +21,7 @@
 		454E24EE2685D08B00EEF0A4 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E24ED2685D08B00EEF0A4 /* Photo.swift */; };
 		454E24F02686022100EEF0A4 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E24EF2686022100EEF0A4 /* PhotoView.swift */; };
 		454E24F5268848B900EEF0A4 /* PhotoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E24F4268848B900EEF0A4 /* PhotoVM.swift */; };
+		454E24F92688580600EEF0A4 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E24F82688580600EEF0A4 /* UserView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,8 @@
 		454E24ED2685D08B00EEF0A4 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		454E24EF2686022100EEF0A4 /* PhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		454E24F4268848B900EEF0A4 /* PhotoVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVM.swift; sourceTree = "<group>"; };
+		454E24F72688552F00EEF0A4 /* Where.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Where.entitlements; sourceTree = "<group>"; };
+		454E24F82688580600EEF0A4 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +74,7 @@
 		4521DF702684BF7400D3F115 /* Where */ = {
 			isa = PBXGroup;
 			children = (
+				454E24F72688552F00EEF0A4 /* Where.entitlements */,
 				454E24F626884D6100EEF0A4 /* ViewModel */,
 				454E24E626856D6000EEF0A4 /* Model */,
 				454E24E526856D4C00EEF0A4 /* View */,
@@ -96,6 +100,7 @@
 			isa = PBXGroup;
 			children = (
 				454E24DE2684C93300EEF0A4 /* SearchBar.swift */,
+				454E24F82688580600EEF0A4 /* UserView.swift */,
 				454E24E326856B4100EEF0A4 /* FolderView.swift */,
 				454E24EB2685C6A900EEF0A4 /* EditPhotosView.swift */,
 				454E24EF2686022100EEF0A4 /* PhotoView.swift */,
@@ -201,6 +206,7 @@
 				4521DF742684BF7400D3F115 /* ContentView.swift in Sources */,
 				454E24EA2685C67D00EEF0A4 /* PhotoPicker.swift in Sources */,
 				4521DF722684BF7400D3F115 /* WhereApp.swift in Sources */,
+				454E24F92688580600EEF0A4 /* UserView.swift in Sources */,
 				454E24DF2684C93300EEF0A4 /* SearchBar.swift in Sources */,
 				454E24E826856D7100EEF0A4 /* Folder.swift in Sources */,
 			);
@@ -330,6 +336,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Where/Where.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Where/Preview Content\"";
@@ -360,6 +367,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Where/Where.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Where/Preview Content\"";

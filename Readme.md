@@ -1,6 +1,7 @@
 # Where
 ## 🗓 Todos
 - **Edit photos**
+- Image pinch to zoom
 - Edit folders
 - Duplicate folder/photo names
 - Add popup when deleting a folder with children
@@ -12,6 +13,7 @@
 - Password protection
 
 ## ⚠️ Issues
+- ‘FolderView': Deleting folders will report issues
 - 'FolderView': [UILog] Called -[UIContextMenuInteraction updateVisibleMenuWithBlock:] while no context menu is visible. This won't do anything.
 
 - 'UserView': Save AppleID Login Data and retrieve it from UserDefaults.

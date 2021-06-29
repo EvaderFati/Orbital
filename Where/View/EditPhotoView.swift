@@ -20,6 +20,7 @@ struct EditPhotoView: View {
     @State var uiTabarController: UITabBarController?
     @State var points: [NewPoint] = []
     @State var tapPosition: CGPoint = .zero
+    @State var scale: CGFloat = 1.0
     
     @GestureState private var dragState = DragState.inactive
     
@@ -42,11 +43,21 @@ struct EditPhotoView: View {
                 print("val changing")
             }
         
+        let pinch = MagnificationGesture()
+            .onChanged { scale in
+                self.scale = scale.magnitude
+            }
+            .onEnded { scale in
+                self.scale = scale.magnitude
+            }
         
         ZStack {
             Image(uiImage: photo.image)
                 .resizable()
-                .aspectRatio(contentMode: .fit)
+                .scaledToFit()
+                .scaleEffect(self.scale)
+                .gesture(pinch)
+                .gesture(drag)
             // hide tab bar
             .introspectTabBarController{ (UITabBarController) in
                 UITabBarController.tabBar.isHidden = true
@@ -64,7 +75,7 @@ struct EditPhotoView: View {
             }
 
         }
-        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+//        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         .background(colorScheme == .dark ? Color.black : Color.white)
         .gesture(drag)
     }

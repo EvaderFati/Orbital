@@ -9,18 +9,18 @@ import SwiftUI
 import Introspect
 
 struct PointView: View {
-    @Environment(\.colorScheme) var colorScheme
-    
     @ObservedObject var photo: Photo
     @State private var uiTabarController: UITabBarController?
     @State private var points: [PointVM] = []
     @State private var tapLocation: CGPoint = .zero
     @State private var scale: CGFloat = 1.0
     @State private var currentPointNum: Int = -1
-    @State private var enableDragging: Bool = true
     @State private var showSheet: Bool = false
     
     @GestureState private var dragState = DragState.inactive
+    
+    let imageHeight: Double
+    let imageWidth: Double
     
     init(photo: Photo) {
         self.photo = photo
@@ -32,6 +32,8 @@ struct PointView: View {
             }
             self.points = tempPoints
         }
+        imageWidth = UIScreen.main.bounds.width
+        imageHeight = photo.image.size.height * imageWidth / photo.image.size.width
     }
     
     var body: some View {
@@ -57,22 +59,21 @@ struct PointView: View {
             }
         
         // zoom in/out images
-        let pinch = MagnificationGesture()
-            .onChanged { scale in
-                self.scale = scale.magnitude
-            }
-            .onEnded { scale in
-                self.scale = scale.magnitude
-            }
+//        let pinch = MagnificationGesture()
+//            .onChanged { scale in
+//                self.scale = scale.magnitude
+//            }
+//            .onEnded { scale in
+//                self.scale = scale.magnitude
+//            }
         
         ZStack {
             Image(uiImage: photo.image)
                 .resizable()
                 .scaledToFit()
-                .scaleEffect(self.scale)
-                .gesture(pinch)
+//                .scaleEffect(self.scale)
+//                .gesture(pinch)
                 .gesture(drag)
-                .allowsHitTesting(enableDragging)
             // hide tab bar
             .introspectTabBarController{ (UITabBarController) in
                 UITabBarController.tabBar.isHidden = true
@@ -81,18 +82,21 @@ struct PointView: View {
                 uiTabarController?.tabBar.isHidden = false
             }
             
-            Group {
-                ForEach(points, id: \.id) { point in
-                    Circle()
-                        .frame(width: 20, height: 20)
-                        .offset(self.getOffset(point.location))
+            ZStack {
+                Group {
+                    ForEach(points, id: \.id) { point in
+                        Circle()
+                            .frame(width: 20, height: 20)
+                            .position(x: point.location.x, y: point.location.y + imageHeight/2 - UIScreen.main.bounds.height/2)
+//                            .offset(self.getOffset(point.location))
+                    }
                 }
             }
+            .frame(width: self.imageWidth, height: self.imageHeight)
         }
-//        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-        .background(colorScheme == .dark ? Color.black : Color.white)
+//        .background(colorScheme == .dark ? Color.black : Color.white)
         .sheet(isPresented: $showSheet) {
-            NavigationView {
+            NavigationView { 
                 List {
                     TextField("Name", text: $points[currentPointNum].name)
                         .navigationBarItems(leading: Button("Cancel") {

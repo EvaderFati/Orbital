@@ -15,7 +15,7 @@ struct PointVM: Identifiable {
     init(point: Point) {
         self.id = point.id!
         self.name = point.name!
-        self.location = point.location
+        self.location = point.screenLocation
     }
     
     init(location: CGPoint) {
@@ -23,4 +23,8 @@ struct PointVM: Identifiable {
         self.name = ""
         self.location = location
     }
+    
+//    func toPoint() -> Point {
+//
+//    }
 }

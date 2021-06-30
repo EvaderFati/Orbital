@@ -12,16 +12,24 @@ struct PointVM: Identifiable {
     var name: String
     var location: CGPoint
     
-    init(point: Point) {
+    init(point: Point, imageWidth: CGFloat, imageHeight: CGFloat) {
         self.id = point.id!
         self.name = point.name!
-        self.location = point.screenLocation
+        self.location = CGPoint(x: imageWidth * point.location.x, y: imageHeight * point.location.y)
+        print(self.location)
+        print("-- (\(imageWidth), \(imageHeight)) --")
     }
     
     init(location: CGPoint) {
         self.id = UUID()
         self.name = ""
         self.location = location
+    }
+    
+    init() {
+        self.id = UUID()
+        self.name = ""
+        self.location = CGPoint(x: 0, y: 0)
     }
     
 //    func toPoint() -> Point {

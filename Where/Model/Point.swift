@@ -8,14 +8,15 @@
 import SwiftUI
 
 extension Point {
-    var location: CGPoint {
-        return CGPoint(x: x, y: y)
+    static func createPoint(_ newPoint: Point, pointVM: PointVM, x: Double, y: Double, photo: Photo) {
+        newPoint.id = pointVM.id
+        newPoint.name = pointVM.name
+        newPoint.x = x
+        newPoint.y = y
+        newPoint.photo = photo
     }
     
-    var screenLocation: CGPoint {
-        let screenHeight = UIScreen.main.bounds.height
-        let photoHeight = (photo?.image.size.height)!
-        
-        return CGPoint(x: CGFloat(x), y: CGFloat(y) + photoHeight/2 - screenHeight/2)
+    var location: CGPoint {
+        return CGPoint(x: x, y: y)
     }
 }

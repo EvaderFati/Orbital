@@ -1,7 +1,10 @@
 # Where
 ## 🗓 Todos
-- **Edit photos**
-- Image pinch to zoom
+### Edit photos
+- Select existing points (rename, delete).
+- Show all the points in 'PhotoView', navigate to 'PointView'
+- Image pinch to zoom (Optional)
+
 - Edit folders
 - Duplicate folder/photo names
 - Add popup when deleting a folder with children
@@ -22,4 +25,3 @@
 
 ## 📦 Packages
 - 'Introspect': Hide tab bar
-- 'SwiftUIX': CocoaTextField

@@ -67,7 +67,7 @@ struct PhotoView: View {
             })
         }
         .background (
-            NavigationLink(destination: EditPhotoView(photo: photo), isActive: $addNewItem) {
+            NavigationLink(destination: PointView(photo: photo), isActive: $addNewItem) {
                 EmptyView()
             }
         )

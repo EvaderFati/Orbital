@@ -8,23 +8,34 @@
 import SwiftUI
 import Introspect
 
-struct NewPoint: Identifiable {
-    var id = UUID()
-    var location: CGPoint
-}
-
-struct EditPhotoView: View {
+struct PointView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @ObservedObject var photo: Photo
-    @State var uiTabarController: UITabBarController?
-    @State var points: [NewPoint] = []
-    @State var tapPosition: CGPoint = .zero
-    @State var scale: CGFloat = 1.0
+    @State private var uiTabarController: UITabBarController?
+    @State private var points: [PointVM] = []
+    @State private var tapLocation: CGPoint = .zero
+    @State private var scale: CGFloat = 1.0
+    @State private var currentPointNum: Int = -1
+    @State private var enableDragging: Bool = true
+    @State private var showSheet: Bool = false
     
     @GestureState private var dragState = DragState.inactive
     
+    init(photo: Photo) {
+        self.photo = photo
+        var tempPoints: [PointVM] = []
+        
+        if let points = photo.points {
+            points.forEach { point in
+                tempPoints.append(PointVM(point: point as! Point))
+            }
+            self.points = tempPoints
+        }
+    }
+    
     var body: some View {
+        // tap to add points
         let drag = DragGesture(minimumDistance: 0, coordinateSpace: .global)
             .updating($dragState) { drag, state, transaction in
                 state = .dragging(translation: drag.translation)
@@ -35,14 +46,17 @@ struct EditPhotoView: View {
                 
                 if abs(startLoc.x - endLoc.x) <= 10 && abs(startLoc.y - endLoc.y) <= 10 {
                     print("tap found")
-                    self.points.append(NewPoint(location: startLoc))
+                    self.points.append(PointVM(location: startLoc))
+                    self.currentPointNum = self.points.count - 1
+                    self.showSheet = true
                 }
             }
             .onChanged { value in
-                self.tapPosition = value.startLocation
+                self.tapLocation = value.startLocation
                 print("val changing")
             }
         
+        // zoom in/out images
         let pinch = MagnificationGesture()
             .onChanged { scale in
                 self.scale = scale.magnitude
@@ -58,6 +72,7 @@ struct EditPhotoView: View {
                 .scaleEffect(self.scale)
                 .gesture(pinch)
                 .gesture(drag)
+                .allowsHitTesting(enableDragging)
             // hide tab bar
             .introspectTabBarController{ (UITabBarController) in
                 UITabBarController.tabBar.isHidden = true
@@ -73,11 +88,25 @@ struct EditPhotoView: View {
                         .offset(self.getOffset(point.location))
                 }
             }
-
         }
 //        .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
         .background(colorScheme == .dark ? Color.black : Color.white)
-        .gesture(drag)
+        .sheet(isPresented: $showSheet) {
+            NavigationView {
+                List {
+                    TextField("Name", text: $points[currentPointNum].name)
+                        .navigationBarItems(leading: Button("Cancel") {
+                            self.showSheet = false
+                        }, trailing: Button(action: addPoint, label: { Text("Add") }))
+                }
+            }
+        }
+    }
+    
+    private func addPoint() {
+        withAnimation {
+            
+        }
     }
     
     private func getOffset(_ originalOffset: CGPoint) -> CGSize {
@@ -113,8 +142,8 @@ enum DragState {
 
 
 
-//struct EditPhotoView_Previews: PreviewProvider {
+//struct PointView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        EditPhotoView()
+//        PointView()
 //    }
 //}

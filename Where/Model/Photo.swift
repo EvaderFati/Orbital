@@ -56,6 +56,7 @@ extension Photo {
         newPhoto.date = Date()
         newPhoto.folder = folder
         newPhoto.image = image
+        newPhoto.points = NSSet()
     }
     
 //    static func createPhoto(_ newPhoto: Photo, name: String, image: UIImage, folder: Folder?) {

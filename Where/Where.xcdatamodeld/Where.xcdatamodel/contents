@@ -13,9 +13,18 @@
         <attribute name="image_" optional="YES" attributeType="Binary"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <relationship name="folder" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Folder" inverseName="photos_" inverseEntity="Folder"/>
+        <relationship name="points" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Point" inverseName="photo" inverseEntity="Point"/>
+    </entity>
+    <entity name="Point" representedClassName="Point" syncable="YES" codeGenerationType="class">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="x" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="y" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="photo" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Photo" inverseName="points" inverseEntity="Photo"/>
     </entity>
     <elements>
-        <element name="Folder" positionX="-8.41015625" positionY="-5.41015625" width="128" height="119"/>
-        <element name="Photo" positionX="372.0078125" positionY="44.66796875" width="128" height="89"/>
+        <element name="Folder" positionX="200.3828125" positionY="-89.42578125" width="128" height="119"/>
+        <element name="Photo" positionX="490.80078125" positionY="35.11328125" width="128" height="14"/>
+        <element name="Point" positionX="207.5" positionY="212.265625" width="128" height="118"/>
     </elements>
 </model>

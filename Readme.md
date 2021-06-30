@@ -20,3 +20,6 @@
 - 'UserView': Update View after log in
 - 'UserView': Handle log out button
 
+## 📦 Packages
+- 'Introspect': Hide tab bar
+- 'SwiftUIX': CocoaTextField

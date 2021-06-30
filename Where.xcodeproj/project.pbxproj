@@ -23,7 +23,10 @@
 		454E24F02686022100EEF0A4 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E24EF2686022100EEF0A4 /* PhotoView.swift */; };
 		454E24F5268848B900EEF0A4 /* PhotoVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E24F4268848B900EEF0A4 /* PhotoVM.swift */; };
 		454E24F92688580600EEF0A4 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 454E24F82688580600EEF0A4 /* UserView.swift */; };
-		455550B326897D4800EAE2F1 /* EditPhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455550B226897D4800EAE2F1 /* EditPhotoView.swift */; };
+		455550B326897D4800EAE2F1 /* PointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 455550B226897D4800EAE2F1 /* PointView.swift */; };
+		459C0832268C01DF00379C65 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = 459C0831268C01DF00379C65 /* SwiftUIX */; };
+		45EB736E268B02A9002FE2FC /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB736D268B02A9002FE2FC /* Point.swift */; };
+		45EB7370268B0C6E002FE2FC /* PointVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45EB736F268B0C6E002FE2FC /* PointVM.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,7 +48,9 @@
 		454E24F72688552F00EEF0A4 /* Where.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Where.entitlements; sourceTree = "<group>"; };
 		454E24F82688580600EEF0A4 /* UserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		455550B12689664200EAE2F1 /* Readme.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Readme.md; sourceTree = "<group>"; };
-		455550B226897D4800EAE2F1 /* EditPhotoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhotoView.swift; sourceTree = "<group>"; };
+		455550B226897D4800EAE2F1 /* PointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointView.swift; sourceTree = "<group>"; };
+		45EB736D268B02A9002FE2FC /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		45EB736F268B0C6E002FE2FC /* PointVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointVM.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +59,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				454D345C2689FAD400704337 /* Introspect in Frameworks */,
+				459C0832268C01DF00379C65 /* SwiftUIX in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,7 +115,7 @@
 				454E24F82688580600EEF0A4 /* UserView.swift */,
 				454E24E326856B4100EEF0A4 /* FolderView.swift */,
 				454E24EF2686022100EEF0A4 /* PhotoView.swift */,
-				455550B226897D4800EAE2F1 /* EditPhotoView.swift */,
+				455550B226897D4800EAE2F1 /* PointView.swift */,
 				454D34562689A39900704337 /* BrowseView.swift */,
 			);
 			path = View;
@@ -121,6 +127,7 @@
 				454E24E726856D7100EEF0A4 /* Folder.swift */,
 				454E24E92685C67D00EEF0A4 /* PhotoPicker.swift */,
 				454E24ED2685D08B00EEF0A4 /* Photo.swift */,
+				45EB736D268B02A9002FE2FC /* Point.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -129,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				454E24F4268848B900EEF0A4 /* PhotoVM.swift */,
+				45EB736F268B0C6E002FE2FC /* PointVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -151,6 +159,7 @@
 			name = Where;
 			packageProductDependencies = (
 				454D345B2689FAD400704337 /* Introspect */,
+				459C0831268C01DF00379C65 /* SwiftUIX */,
 			);
 			productName = Where;
 			productReference = 4521DF6E2684BF7400D3F115 /* Where.app */;
@@ -182,6 +191,7 @@
 			mainGroup = 4521DF652684BF7400D3F115;
 			packageReferences = (
 				454D345A2689FAD400704337 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				459C0830268C01DF00379C65 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
 			);
 			productRefGroup = 4521DF6F2684BF7400D3F115 /* Products */;
 			projectDirPath = "";
@@ -214,12 +224,14 @@
 				454D34572689A39900704337 /* BrowseView.swift in Sources */,
 				4521DF7E2684BF7500D3F115 /* Where.xcdatamodeld in Sources */,
 				454E24EE2685D08B00EEF0A4 /* Photo.swift in Sources */,
+				45EB7370268B0C6E002FE2FC /* PointVM.swift in Sources */,
 				454E24F5268848B900EEF0A4 /* PhotoVM.swift in Sources */,
-				455550B326897D4800EAE2F1 /* EditPhotoView.swift in Sources */,
+				455550B326897D4800EAE2F1 /* PointView.swift in Sources */,
 				454E24F02686022100EEF0A4 /* PhotoView.swift in Sources */,
 				4521DF742684BF7400D3F115 /* ContentView.swift in Sources */,
 				454E24EA2685C67D00EEF0A4 /* PhotoPicker.swift in Sources */,
 				4521DF722684BF7400D3F115 /* WhereApp.swift in Sources */,
+				45EB736E268B02A9002FE2FC /* Point.swift in Sources */,
 				454E24F92688580600EEF0A4 /* UserView.swift in Sources */,
 				454E24DF2684C93300EEF0A4 /* SearchBar.swift in Sources */,
 				454E24E826856D7100EEF0A4 /* Folder.swift in Sources */,
@@ -439,6 +451,14 @@
 				minimumVersion = 0.1.3;
 			};
 		};
+		459C0830268C01DF00379C65 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.7;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -446,6 +466,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 454D345A2689FAD400704337 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
+		};
+		459C0831268C01DF00379C65 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 459C0830268C01DF00379C65 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
 		};
 /* End XCSwiftPackageProductDependency section */
 

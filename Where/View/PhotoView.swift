@@ -17,8 +17,8 @@ struct PhotoView: View {
 
     var body: some View {
         GeometryReader { geo in
-            VStack{
-                HStack{
+            VStack {
+                HStack {
                     // Image("kitchen")
                     Image(uiImage: photo.image)
                         .resizable()
@@ -32,36 +32,40 @@ struct PhotoView: View {
                 }
                 .frame(width: geo.size.width)
                 
+                TextField("Enter name", text: $photo.name_)
+                    .padding(EdgeInsets(top: 10, leading: 30, bottom: 0, trailing: 0))
+                    .font(.system(size: 32, weight: .bold, design: .default))
+                Divider()
+                
                 List {
-                    Section {
-                        HStack {
-                            Text("Name: ")
-                                .font(.headline)
-                            TextField("Enter name", text: $photo.name_)
+                    Section(header: HStack {
+                        Text("Items")
+                            .font(.headline)
+//                            .foregroundColor(.primary)
+//                            .textCase(.none)
+                        Spacer()
+                        Button(action: {
+                            self.addNewItem = true
+                        }) {
+                            Image(systemName: "plus.circle")
+                                .font(.title2)
+                                .foregroundColor(.blue)
                         }
-                        .frame(height: 40)
-                    }
-                    Section {
-                        HStack {
-                            Text("Items")
-                                .font(.headline)
-                            Spacer()
-                            Button(action: {
-                                self.addNewItem = true
-                            }) {
-                                Image(systemName: "plus.circle")
-                                    .font(.headline)
-                                    .foregroundColor(.blue)
+                    }) {
+                        if let points = self.photo.points {
+                            ForEach(Array(points as Set), id: \.self) { point in
+                                NavigationLink(destination: Text("Single point view")) {
+                                    HStack {
+                                        Text((point as! Point).name!)
+                                    }
+                                }
                             }
-                        }
-                        List {
-                            
                         }
                     }
                 }
                 .listStyle(InsetGroupedListStyle())
             }
-            .navigationBarItems(trailing: Button("Add") {
+            .navigationBarItems(trailing: Button("Done") {
                 Photo.update(from: photo, context: viewContext)
                 presentationMode.wrappedValue.dismiss()
             })

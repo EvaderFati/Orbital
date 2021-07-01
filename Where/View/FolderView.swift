@@ -10,6 +10,8 @@ import CoreData
 
 struct FolderView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.colorScheme) private var colorScheme
+    
     @FetchRequest var folders: FetchedResults<Folder>
     @FetchRequest var photos: FetchedResults<Photo>
 
@@ -81,6 +83,7 @@ struct FolderView: View {
         .sheet(isPresented: $isAddingFolder) {
             NavigationView {
                 CreateFolderView(newFolderName: $newFolderName, newFolderIsLocked: $newFolderIsLocked)
+                    .navigationBarTitle("Edit Folder", displayMode: .inline)
                     .navigationBarItems(leading: Button("Cancel") {
                         isAddingFolder = false
                     }, trailing: Button(action: addFolder, label: { Text("Done") }))
@@ -173,9 +176,25 @@ struct CreateFolderView: View {
     
     var body: some View {
         List {
-            TextField("Folder Name", text: $newFolderName)
-            Toggle("Require Password", isOn: $newFolderIsLocked)
+            Section(header: Text("Name")) {
+                TextField("Enter Folder Name", text: $newFolderName)
+            }
+            
+            Section(header: Text("Settings")) {
+                Toggle("Require Password", isOn: $newFolderIsLocked)
+            }
         }
+//        VStack {
+//            Text("Name")
+//                .font(.headline)
+//            Section {
+//                TextField("Folder Name", text: $newFolderName)
+//            }
+//            List {
+//
+//                Toggle("Require Password", isOn: $newFolderIsLocked)
+//            }
+//        }
     }
 }
 
@@ -229,8 +248,10 @@ func dateToString(_ date: Date?) -> String {
     dateFormatter.dateFormat = "YY/M/d"
     return dateFormatter.string(from: date)
 }
-//struct FolderView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        FolderView()
-//    }
-//}
+
+
+struct FolderView_Previews: PreviewProvider {
+    static var previews: some View {
+        CreateFolderView(newFolderName: .constant("Folder"), newFolderIsLocked: .constant(true))
+    }
+}

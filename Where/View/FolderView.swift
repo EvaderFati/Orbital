@@ -83,7 +83,7 @@ struct FolderView: View {
                 CreateFolderView(newFolderName: $newFolderName, newFolderIsLocked: $newFolderIsLocked)
                     .navigationBarItems(leading: Button("Cancel") {
                         isAddingFolder = false
-                    }, trailing: Button(action: addFolder, label: { Text("Add") }))
+                    }, trailing: Button(action: addFolder, label: { Text("Done") }))
             }
         }
         .sheet(isPresented: $isImportingPhoto) {

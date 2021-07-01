@@ -5,6 +5,7 @@
 - Show all the points in 'PhotoView', navigate to 'PointView'
 - Image pinch to zoom (Optional)
 
+- Take photos
 - Edit folders
 - Duplicate folder/photo names
 - Add popup when deleting a folder with children
@@ -16,6 +17,8 @@
 - Password protection
 
 ## ⚠️ Issues
+- 'PointView': UI will not be updated while deleting points. (self.point.remove(at: currPointNum) will report index out of range error)
+
 - ‘FolderView': Deleting folders will report issues
 - 'FolderView': [UILog] Called -[UIContextMenuInteraction updateVisibleMenuWithBlock:] while no context menu is visible. This won't do anything.
 

@@ -69,6 +69,9 @@ struct PhotoView: View {
                 Photo.update(from: photo, context: viewContext)
                 presentationMode.wrappedValue.dismiss()
             })
+            .onTapGesture {
+                self.hideKeyboard()
+            }
         }
         .background (
             NavigationLink(destination: PointView(photo: photo), isActive: $addNewItem) {

@@ -31,7 +31,7 @@ extension Folder {
     }
     
     var children: NSSet {
-        get { children_! }
+        get { children_ ?? NSSet() }
         set { children_ = newValue }
     }
     

@@ -206,7 +206,7 @@ struct FolderListEntry: View {
             Image(systemName: "folder")
                 .padding(.leading)
                 .foregroundColor(.blue)
-                .font(.system(size: 20))
+                .font(.system(size: 24))
             VStack(alignment: .leading) {
                 Text(folder.name ?? "Untitled")
                 Text(folder.numOfItems == 0
@@ -229,7 +229,7 @@ struct PhotoListEntry: View {
             Image(systemName: "photo")
                 .padding(.leading)
                 .foregroundColor(.blue)
-                .font(.system(size: 20))
+                .font(.system(size: 24))
             VStack(alignment: .leading) {
                 Text(photo.name ?? "Untitled")
                 Text("\(dateToString(photo.date))")

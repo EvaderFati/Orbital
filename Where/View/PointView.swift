@@ -43,7 +43,7 @@ struct PointView: View {
                 let endLoc = value.location
                 
                 if abs(startLoc.x - endLoc.x) <= 10 && abs(startLoc.y - endLoc.y) <= 10 {
-                    print("tap found")
+                    print("tap")
                     self.newPoint.location = CGPoint(x: startLoc.x, y: startLoc.y  + imageHeight/2 - UIScreen.main.bounds.height/2)
                     self.isAddingPoint = true
                 }
@@ -65,7 +65,6 @@ struct PointView: View {
             Image(uiImage: photo.image)
                 .resizable()
                 .scaledToFit()
-                .gesture(add)
 
 //                .scaleEffect(self.scale)
 //                .gesture(pinch)
@@ -99,8 +98,8 @@ struct PointView: View {
                 }
             }
             .frame(width: self.imageWidth, height: self.imageHeight)
-//            .gesture(add)
         }
+        .gesture(add)
         /*
          * Show all the existing points in the photo.
          * (Note: Cannot append an @State array during init() process.)
@@ -114,23 +113,42 @@ struct PointView: View {
         }
         .sheet(isPresented: $isAddingPoint) {
             NavigationView { 
-                List {
+                VStack {
+                    Image(uiImage: croppedImage(image: self.photo.image))
+                        .resizable()
+                        .frame(width: 200, height: 200)
+                        .clipShape(Circle())
                     TextField("Name", text: $newPoint.name)
-                        .navigationBarItems(leading: Button("Cancel") {
-                            self.isAddingPoint = false
-                        }, trailing: Button(action: addPoint, label: { Text("Add") }))
+                        .padding(EdgeInsets(top: 10, leading: 30, bottom: 0, trailing: 0))
+                        .font(.system(size: 32, weight: .bold, design: .default))
+                    Spacer()
                 }
+                .navigationBarTitle("Add Point")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarItems(leading: Button("Cancel") {
+                    self.isAddingPoint = false
+                }, trailing: Button(action: addPoint, label: { Text("Add") }))
             }
         }
         .sheet(isPresented: $isChangingPoint) {
             NavigationView {
-                List {
+                VStack {
+                    Image(uiImage: croppedImage(image: self.photo.image))
+                        .resizable()
+                        .frame(width: 200, height: 200)
+                        .clipShape(Circle())
                     TextField("Name", text: $points[currentPointNum].name)
-                        .navigationBarItems(leading: Button("Cancel") {
-                            self.isChangingPoint = false
-                        }, trailing: Button(action: changePoint, label: { Text("Done") }))
+                        .padding(EdgeInsets(top: 10, leading: 30, bottom: 0, trailing: 0))
+                        .font(.system(size: 32, weight: .bold, design: .default))
                     Button(action: deletePoint, label: { Text("Delete")} )
+                        .buttonStyle(DeleteButtonStyle())
+                    Spacer()
                 }
+                .navigationBarTitle("Edit Point")
+                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarItems(leading: Button("Cancel") {
+                    self.isChangingPoint = false
+                }, trailing: Button(action: changePoint, label: { Text("Done") }))
             }
         }
     }
@@ -201,6 +219,30 @@ struct PointView: View {
                 }
             }
         }
+    }
+    
+    private func croppedImage(image: UIImage) -> UIImage {
+        let ratio = image.size.width / UIScreen.main.bounds.width
+        var cgImage = image.cgImage!
+        if (self.isAddingPoint) {
+            cgImage = cgImage.cropping(to: CGRect(origin: CGPoint(x: self.newPoint.location.x * ratio - image.size.width / 8, y: self.newPoint.location.y * ratio - image.size.width / 8), size: CGSize(width: image.size.width / 4, height: image.size.width / 4)))!
+        } else {
+            cgImage = cgImage.cropping(to: CGRect(origin: CGPoint(x: self.points[currentPointNum].location.x * ratio - image.size.width / 8, y: self.points[currentPointNum].location.y * ratio - image.size.width / 8), size: CGSize(width: image.size.width / 4, height: image.size.width / 4)))!
+        }
+        return UIImage(cgImage: cgImage)
+    }
+}
+
+struct DeleteButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .padding()
+            .foregroundColor(.white)
+            .background(LinearGradient(gradient: Gradient(colors:[Color.red, Color.orange]), startPoint: .leading, endPoint: .trailing))
+            .cornerRadius(20)
+            .padding(.horizontal, 40)
+            .scaleEffect(configuration.isPressed ? 0.9: 1.0)
     }
 }
 

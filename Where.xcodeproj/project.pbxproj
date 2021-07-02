@@ -109,7 +109,7 @@
 		454E24E526856D4C00EEF0A4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				454E24DE2684C93300EEF0A4 /* SearchBar.swift */,
+				45855410268EAC56002A2AE8 /* Components */,
 				454E24F82688580600EEF0A4 /* UserView.swift */,
 				454E24E326856B4100EEF0A4 /* FolderView.swift */,
 				454E24EF2686022100EEF0A4 /* PhotoView.swift */,
@@ -137,6 +137,14 @@
 				45EB736F268B0C6E002FE2FC /* PointVM.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		45855410268EAC56002A2AE8 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				454E24DE2684C93300EEF0A4 /* SearchBar.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

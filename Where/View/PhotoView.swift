@@ -19,16 +19,11 @@ struct PhotoView: View {
         GeometryReader { geo in
             VStack {
                 HStack {
-                    // Image("kitchen")
                     Image(uiImage: photo.image)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 0.9 * geo.size.width)
                         .cornerRadius(20)
-//                        .gesture(
-//                            TapGesture()
-//                                .onEnded(<#T##action: (()) -> Void##(()) -> Void#>)
-//                        )
                 }
                 .frame(width: geo.size.width)
                 
@@ -41,8 +36,6 @@ struct PhotoView: View {
                     Section(header: HStack {
                         Text("Items")
                             .font(.headline)
-//                            .foregroundColor(.primary)
-//                            .textCase(.none)
                         Spacer()
                         Button(action: {
                             self.addNewItem = true
@@ -56,7 +49,12 @@ struct PhotoView: View {
                             ForEach(Array(points as Set), id: \.self) { point in
                                 NavigationLink(destination: Text("Single point view")) {
                                     HStack {
+                                        Circle()
+                                            .stroke(lineWidth: 3.0)
+                                            .frame(width: 20, height: 20)
+                                            .foregroundColor((point as! Point).color)
                                         Text((point as! Point).name!)
+                                        Spacer()
                                     }
                                 }
                             }

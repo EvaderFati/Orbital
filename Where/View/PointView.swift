@@ -61,6 +61,7 @@ struct PointView: View {
 //                self.scale = scale.magnitude
 //            }
         
+        // MARK: - View Start
         ZStack {
             Image(uiImage: photo.image)
                 .resizable()
@@ -80,6 +81,7 @@ struct PointView: View {
                 Group {
                     ForEach(points, id: \.id) { point in
                         Circle()
+                            .fill(point.color)
                             .frame(width: 20, height: 20)
                             .position(x: point.location.x, y: point.location.y)
                             .gesture(
@@ -111,16 +113,26 @@ struct PointView: View {
                 }
             }
         }
+        // MARK: - Add point sheet
         .sheet(isPresented: $isAddingPoint) {
             NavigationView { 
                 VStack {
-                    Image(uiImage: croppedImage(image: self.photo.image))
-                        .resizable()
-                        .frame(width: 200, height: 200)
-                        .clipShape(Circle())
+                    ZStack {
+                        Image(uiImage: croppedImage(image: self.photo.image))
+                            .resizable()
+                            .frame(width: 200, height: 200)
+                            .clipShape(Circle())
+                        Circle()
+                            .fill(newPoint.color)
+                            .frame(width: 20, height: 20)
+                    }
+                    
                     TextField("Name", text: $newPoint.name)
-                        .padding(EdgeInsets(top: 10, leading: 30, bottom: 0, trailing: 0))
                         .font(.system(size: 32, weight: .bold, design: .default))
+                        .multilineTextAlignment(.center)
+                    
+                    ColorPicker("Select color", selection: $newPoint.color)
+
                     Spacer()
                 }
                 .navigationBarTitle("Add Point")
@@ -130,17 +142,30 @@ struct PointView: View {
                 }, trailing: Button(action: addPoint, label: { Text("Add") }))
             }
         }
+        // MARK: - Change point sheet
         .sheet(isPresented: $isChangingPoint) {
             NavigationView {
                 VStack {
-                    Image(uiImage: croppedImage(image: self.photo.image))
-                        .resizable()
-                        .frame(width: 200, height: 200)
-                        .clipShape(Circle())
+                    ZStack {
+                        Image(uiImage: croppedImage(image: self.photo.image))
+                            .resizable()
+                            .frame(width: 200, height: 200)
+                            .clipShape(Circle())
+                        Circle()
+                            .fill(self.points[currentPointNum].color)
+                            .frame(width: 20, height: 20)
+                    }
+                    
                     TextField("Name", text: $points[currentPointNum].name)
-                        .padding(EdgeInsets(top: 10, leading: 30, bottom: 0, trailing: 0))
                         .font(.system(size: 32, weight: .bold, design: .default))
-                    Button(action: deletePoint, label: { Text("Delete")} )
+                        .multilineTextAlignment(.center)
+                    
+                    ColorPicker("Select color", selection: $points[currentPointNum].color)
+                    
+                    Button(action: deletePoint, label: {
+                        Text("Delete")
+                            .font(.headline)
+                    })
                         .buttonStyle(DeleteButtonStyle())
                     Spacer()
                 }
@@ -168,8 +193,10 @@ struct PointView: View {
             points.forEach { point in
                 if let point = point as? Point {
                     if point.id!.uuidString == self.points[currentPointNum].id.uuidString {
+                        point.name = self.points[currentPointNum].name
                         point.x = Double(self.points[currentPointNum].location.x / imageWidth)
                         point.y = Double(self.points[currentPointNum].location.y / imageHeight)
+                        point.color = self.points[currentPointNum].color
                         point.objectWillChange.send()
                         photo.objectWillChange.send()
                         try? viewContext.save()

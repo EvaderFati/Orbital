@@ -1,5 +1,7 @@
 # Where
 ## 🗓 Todos
+- Delete points when delete photos
+
 ### Edit photos
 - Select existing points (rename, delete).
 - Show all the points in 'PhotoView', navigate to 'PointView'

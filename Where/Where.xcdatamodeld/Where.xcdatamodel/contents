@@ -16,6 +16,7 @@
         <relationship name="points" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Point" inverseName="photo" inverseEntity="Point"/>
     </entity>
     <entity name="Point" representedClassName="Point" syncable="YES" codeGenerationType="class">
+        <attribute name="color_" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="x" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -25,6 +26,6 @@
     <elements>
         <element name="Folder" positionX="200.3828125" positionY="-89.42578125" width="128" height="119"/>
         <element name="Photo" positionX="490.80078125" positionY="35.11328125" width="128" height="14"/>
-        <element name="Point" positionX="207.5" positionY="212.265625" width="128" height="118"/>
+        <element name="Point" positionX="207.5" positionY="212.265625" width="128" height="119"/>
     </elements>
 </model>

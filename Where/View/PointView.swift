@@ -131,7 +131,11 @@ struct PointView: View {
                         .font(.system(size: 32, weight: .bold, design: .default))
                         .multilineTextAlignment(.center)
                     
-                    ColorPicker("Select color", selection: $newPoint.color)
+                    ColorPicker(selection: $newPoint.color) {
+                        Text("Color")
+                            .font(.headline)
+                    }
+                    .padding(EdgeInsets(top: 15, leading: 50, bottom: 20, trailing: 50))
 
                     Spacer()
                 }
@@ -160,13 +164,18 @@ struct PointView: View {
                         .font(.system(size: 32, weight: .bold, design: .default))
                         .multilineTextAlignment(.center)
                     
-                    ColorPicker("Select color", selection: $points[currentPointNum].color)
+                    ColorPicker(selection: $points[currentPointNum].color) {
+                        Text("Color")
+                            .font(.headline)
+                    }
+                    .padding(EdgeInsets(top: 15, leading: 50, bottom: 20, trailing: 50))
                     
                     Button(action: deletePoint, label: {
                         Text("Delete")
                             .font(.headline)
                     })
                         .buttonStyle(DeleteButtonStyle())
+                    
                     Spacer()
                 }
                 .navigationBarTitle("Edit Point")

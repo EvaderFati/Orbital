@@ -118,7 +118,10 @@ struct FolderView: View {
     
     private func deletePhotos(offsets: IndexSet) {
         withAnimation {
-            offsets.map { photos[$0] }.forEach(viewContext.delete)
+            offsets.map { photos[$0] }.forEach { photo in
+                (photo ).points?.forEach{ viewContext.delete($0 as! NSManagedObject) }
+                viewContext.delete(photo as NSManagedObject)
+            }
             
             do {
                 try viewContext.save()
@@ -157,6 +160,7 @@ struct FolderView: View {
                 return
             } else {
                 folder.photos.forEach { photo in
+                    (photo as! Photo).points?.forEach{ viewContext.delete($0 as! NSManagedObject) }
                     viewContext.delete(photo as! NSManagedObject)
                 }
             }

@@ -36,12 +36,12 @@ extension Folder {
     }
     
     var photos: NSSet {
-        get { photos_! }
+        get { photos_ ?? NSSet() }
         set { photos_ = newValue }
     }
     
     // TODO: numOfItems = numOfFolders + numOfPhotos
     var numOfItems: Int {
-        return children.count
+        return children.count + photos.count
     }
 }

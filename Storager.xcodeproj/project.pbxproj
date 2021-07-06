@@ -48,6 +48,7 @@
 		452E6A232693EBD700E454A0 /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		452E6A252693EBD700E454A0 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		452E6A262693EBD700E454A0 /* FolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
+		45807A9326942FD900A8E91D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +65,7 @@
 		452E69F12693EB6100E454A0 = {
 			isa = PBXGroup;
 			children = (
+				45807A9326942FD900A8E91D /* README.md */,
 				452E69FC2693EB6100E454A0 /* Storager */,
 				452E69FB2693EB6100E454A0 /* Products */,
 			);

@@ -22,6 +22,7 @@ struct FolderView: View {
     @State private var newFolderIsLocked = false
 //    @State private var inputImage: UIImage? = nil
     @State private var newPhoto: PhotoVM = PhotoVM()
+    @State private var isDuplicateName = false
 
     let parent: Folder?
     
@@ -82,18 +83,24 @@ struct FolderView: View {
         }
         .sheet(isPresented: $isAddingFolder) {
             NavigationView {
-                CreateFolderView(newFolderName: $newFolderName, newFolderIsLocked: $newFolderIsLocked)
-                    .navigationBarTitle("Edit Folder", displayMode: .inline)
-                    .navigationBarItems(leading: Button("Cancel") {
-                        isAddingFolder = false
-                    }, trailing: Button(action: addFolder, label: { Text("Done") }))
+                if #available(iOS 15.0, *) {
+                    CreateFolderView(newFolderName: $newFolderName, newFolderIsLocked: $newFolderIsLocked)
+                        .navigationBarTitle("Edit Folder", displayMode: .inline)
+                        .navigationBarItems(leading: Button("Cancel") {
+                            isAddingFolder = false
+                        }, trailing: Button(action: addFolder, label: { Text("Done") }).alert("This name has already existed",isPresented: $isDuplicateName){Button("Return to main page"){isAddingFolder = false}
+                            
+                        })
+                } else {
+                    // Fallback on earlier versions
+                }
             }
         }
         .sheet(isPresented: $isImportingPhoto) {
             PhotoPicker(photo: newPhoto, folder: parent)
         }
 //        .background(
-//            NavigationLink(destination: PhotoView(photo: Photo.createPhoto(image: inputImage!, folder: parent, context: viewContext)), isActive: .constant(inputImage != nil)) {
+//            NavigationLink(destination: PhotoView(photo: Photo.createPhoto(image: Re!, folder: parent, context: viewContext)), isActive: .constant(inputImage != nil)) {
 //                EmptyView()
 //            }
 //        )
@@ -101,9 +108,20 @@ struct FolderView: View {
     
     private func addFolder() {
         withAnimation {
-            let newFolder = Folder(context: viewContext)
-            Folder.createFolder(newFolder, name: newFolderName, isLocked: newFolderIsLocked, parent: self.parent)
-            isAddingFolder = false
+            let request = NSFetchRequest<Folder>(entityName: "Folder")
+            request.predicate = NSPredicate(format: "name = %@", newFolderName)
+            let results = try? viewContext.fetch(request)
+            if results == [] {
+                isDuplicateName = false
+                let newFolder = Folder(context: viewContext)
+                Folder.createFolder(newFolder, name: newFolderName, isLocked: newFolderIsLocked, parent: self.parent)
+                isAddingFolder = false
+            }else {
+                isDuplicateName = true
+
+            }
+            
+
 
             do {
                 try viewContext.save()
@@ -116,33 +134,7 @@ struct FolderView: View {
         }
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     private func deletePhotos(offsets: IndexSet) {
         withAnimation {
             offsets.map { photos[$0] }.forEach { photo in

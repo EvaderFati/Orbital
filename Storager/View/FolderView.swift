@@ -116,6 +116,33 @@ struct FolderView: View {
         }
     }
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private func deletePhotos(offsets: IndexSet) {
         withAnimation {
             offsets.map { photos[$0] }.forEach { photo in

@@ -20,8 +20,8 @@ struct FolderView: View {
     @State private var isImportingPhoto = false
     @State private var newFolderName = ""
     @State private var newFolderIsLocked = false
-//    @State private var inputImage: UIImage? = nil
     @State private var newPhoto: PhotoVM = PhotoVM()
+    @State private var searchText = ""
 
     let parent: Folder?
     
@@ -35,15 +35,15 @@ struct FolderView: View {
     
     var body: some View {
         VStack {
-            SearchBar()
+            SearchBar(searchText: $searchText)
             List {
-                ForEach(folders) { folder in
+                ForEach(folders.filter({ $0.name!.contains(searchText) || searchText.isEmpty })) { folder in
                     NavigationLink(destination: FolderView(folder)) {
                         FolderListEntry(folder: folder)
                     }
                 }
                 .onDelete(perform: deleteFolders)
-                ForEach(photos) { photo in
+                ForEach(photos.filter({ $0.name!.contains(searchText) || searchText.isEmpty })) { photo in
                     NavigationLink(destination: PhotoView(photo: photo)) {
                         PhotoListEntry(photo: photo)
                     }
@@ -61,7 +61,10 @@ struct FolderView: View {
                     Button(action: { isAddingFolder = true }) {
                         Label("New Folder", systemImage: "folder.badge.plus")
                     }
-                } label: { Image(systemName: "ellipsis.circle") }
+                } label: {
+                    Image(systemName: "ellipsis.circle")
+                        .font(.system(size: 22))
+                }
             }
         }
         .actionSheet(isPresented: $isAddingPhoto) {
@@ -188,6 +191,7 @@ struct CreateFolderView: View {
                 Toggle("Require Password", isOn: $newFolderIsLocked)
             }
         }
+        .listStyle(InsetGroupedListStyle())
 //        VStack {
 //            Text("Name")
 //                .font(.headline)

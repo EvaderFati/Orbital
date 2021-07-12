@@ -15,6 +15,7 @@ struct BrowseView: View {
     @State private var isAddingFolder = false
     @State private var newFolderName = ""
     @State private var newFolderIsLocked = false
+    @State private var searchText = ""
 
     let parent: Folder?
     
@@ -26,7 +27,7 @@ struct BrowseView: View {
     
     var body: some View {
         VStack {
-            SearchBar()
+            SearchBar(searchText: $searchText)
             List {
                 ForEach(folders) { folder in
                     NavigationLink(destination: FolderView(folder)) {

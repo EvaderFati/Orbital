@@ -30,6 +30,12 @@ extension Folder {
         return request
     }
     
+    static func fetchRequestAll() -> NSFetchRequest<Folder> {
+        let request = NSFetchRequest<Folder>(entityName: "Folder")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        return request
+    }
+    
     var children: NSSet {
         get { children_ ?? NSSet() }
         set { children_ = newValue }

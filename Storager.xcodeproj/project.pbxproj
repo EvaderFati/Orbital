@@ -25,6 +25,7 @@
 		452E6A2A2693EBD700E454A0 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E6A232693EBD700E454A0 /* UserView.swift */; };
 		452E6A2B2693EBD700E454A0 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E6A252693EBD700E454A0 /* SearchBar.swift */; };
 		452E6A2C2693EBD700E454A0 /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E6A262693EBD700E454A0 /* FolderView.swift */; };
+		459207B1269B089A00A311D9 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459207B0269B089A00A311D9 /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,8 @@
 		452E6A252693EBD700E454A0 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		452E6A262693EBD700E454A0 /* FolderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FolderView.swift; sourceTree = "<group>"; };
 		45807A9326942FD900A8E91D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		459207AF2696B08400A311D9 /* Storager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Storager.entitlements; sourceTree = "<group>"; };
+		459207B0269B089A00A311D9 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,8 +69,8 @@
 			isa = PBXGroup;
 			children = (
 				45807A9326942FD900A8E91D /* README.md */,
-				452E69FC2693EB6100E454A0 /* Storager */,
 				452E69FB2693EB6100E454A0 /* Products */,
+				452E69FC2693EB6100E454A0 /* Storager */,
 			);
 			sourceTree = "<group>";
 		};
@@ -82,16 +85,17 @@
 		452E69FC2693EB6100E454A0 /* Storager */ = {
 			isa = PBXGroup;
 			children = (
-				452E69FD2693EB6100E454A0 /* StoragerApp.swift */,
+				459207AF2696B08400A311D9 /* Storager.entitlements */,
+				452E6A0B2693EB6100E454A0 /* Info.plist */,
 				452E69FF2693EB6100E454A0 /* ContentView.swift */,
-				452E6A112693EBBB00E454A0 /* ViewModel */,
+				452E6A062693EB6100E454A0 /* Persistence.swift */,
+				452E69FD2693EB6100E454A0 /* StoragerApp.swift */,
 				452E6A012693EB6100E454A0 /* Assets.xcassets */,
 				452E6A162693EBC300E454A0 /* Model */,
-				452E6A062693EB6100E454A0 /* Persistence.swift */,
-				452E6A1F2693EBD700E454A0 /* View */,
-				452E6A0B2693EB6100E454A0 /* Info.plist */,
-				452E6A082693EB6100E454A0 /* Storager.xcdatamodeld */,
 				452E6A032693EB6100E454A0 /* Preview Content */,
+				452E6A082693EB6100E454A0 /* Storager.xcdatamodeld */,
+				452E6A1F2693EBD700E454A0 /* View */,
+				452E6A112693EBBB00E454A0 /* ViewModel */,
 			);
 			path = Storager;
 			sourceTree = "<group>";
@@ -133,6 +137,7 @@
 				452E6A232693EBD700E454A0 /* UserView.swift */,
 				452E6A242693EBD700E454A0 /* Components */,
 				452E6A262693EBD700E454A0 /* FolderView.swift */,
+				459207B0269B089A00A311D9 /* SearchView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -220,6 +225,7 @@
 				452E6A2B2693EBD700E454A0 /* SearchBar.swift in Sources */,
 				452E6A0A2693EB6100E454A0 /* Storager.xcdatamodeld in Sources */,
 				452E6A072693EB6100E454A0 /* Persistence.swift in Sources */,
+				459207B1269B089A00A311D9 /* SearchView.swift in Sources */,
 				452E6A282693EBD700E454A0 /* PointView.swift in Sources */,
 				452E6A002693EB6100E454A0 /* ContentView.swift in Sources */,
 				452E6A142693EBBB00E454A0 /* PointVM.swift in Sources */,
@@ -357,7 +363,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Storager/Storager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Storager/Preview Content\"";
 				DEVELOPMENT_TEAM = 4B6Y8QCC4J;
 				ENABLE_PREVIEWS = YES;
@@ -367,10 +375,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.evaderfati.Storager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -379,7 +388,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Storager/Storager.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Storager/Preview Content\"";
 				DEVELOPMENT_TEAM = 4B6Y8QCC4J;
 				ENABLE_PREVIEWS = YES;
@@ -389,10 +400,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.evaderfati.Storager;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

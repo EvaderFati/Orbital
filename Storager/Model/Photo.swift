@@ -50,6 +50,12 @@ extension Photo {
         return request
     }
     
+    static func fetchRequestAll() -> NSFetchRequest<Photo> {
+        let request = NSFetchRequest<Photo>(entityName: "Photo")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        return request
+    }
+    
     static func createPhoto(image: UIImage, folder: Folder?, context: NSManagedObjectContext) {
         let newPhoto = Photo(context: context)
         newPhoto.name = "New Photo"

@@ -41,7 +41,7 @@ struct ContentView: View {
                         .font(.system(size: 10))
                 }
                 .tag(0)
-            NavigationView { Text("Search") }
+            NavigationView { SearchView() }
                 .tabItem {
                     Image(systemName: "magnifyingglass")
                         .font(.system(size: 22, weight: .semibold))

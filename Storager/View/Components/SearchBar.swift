@@ -5,9 +5,16 @@
 //  Created by Evader on 20/5/21.
 //
 import SwiftUI
+//import CoreData
 
 struct SearchBar: View {
-    @State private var searchText = ""
+//    @Environment(\.managedObjectContext) private var viewContext
+//
+//    @FetchRequest var folders: FetchedResults<Folder>
+//    @FetchRequest var photos: FetchedResults<Photo>
+//
+//
+    @Binding var searchText: String
     @State private var showCancelButton: Bool = false
     
     var body: some View {
@@ -20,6 +27,8 @@ struct SearchBar: View {
                           },
                           onCommit: {
                             print("onCommit")
+//                            let requestFolder = Folder.fetchRequestAll()
+//                            _folders = FetchRequest(fetchRequest: requestFolder)
                           })
                     .foregroundColor(.primary)
 
@@ -58,9 +67,9 @@ extension UIApplication {
     }
 }
 
-struct SearchBar_Previews: PreviewProvider {
-    static var previews: some View {
-        SearchBar()
-            .previewLayout(.sizeThatFits)
-    }
-}
+//struct SearchBar_Previews: PreviewProvider {
+//    static var previews: some View {
+//        SearchBar()
+//            .previewLayout(.sizeThatFits)
+//    }
+//}

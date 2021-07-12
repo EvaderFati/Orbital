@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 extension Point {
     static func createPoint(_ newPoint: Point, pointVM: PointVM, x: Double, y: Double, photo: Photo) {
@@ -15,6 +16,12 @@ extension Point {
         newPoint.y = y
         newPoint.photo = photo
         newPoint.color_ = UIColor(pointVM.color).toHex
+    }
+    
+    static func fetchRequestAll() -> NSFetchRequest<Point> {
+        let request = NSFetchRequest<Point>(entityName: "Point")
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        return request
     }
     
     var location: CGPoint {

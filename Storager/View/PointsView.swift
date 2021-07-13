@@ -8,7 +8,7 @@
 import SwiftUI
 //import Introspect
 
-struct PointView: View {
+struct PointsView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
     @ObservedObject var photo: Photo
@@ -106,7 +106,7 @@ struct PointView: View {
          * Show all the existing points in the photo.
          * (Note: Cannot append an @State array during init() process.)
          */
-        .onAppear{
+        .onAppear {
             if let points = photo.points {
                 points.forEach { point in
                     self.points.append(PointVM(point: point as! Point, imageWidth: self.imageWidth, imageHeight: self.imageHeight))
@@ -187,6 +187,7 @@ struct PointView: View {
         }
     }
     
+    // Change a point location and return its sequence number
     private func changeLocation(uuid: String, newLoc: CGPoint) -> Int{
         for i in 0..<points.count {
             if points[i].id.uuidString == uuid {
@@ -307,8 +308,8 @@ enum DragState {
 
 
 
-//struct PointView_Previews: PreviewProvider {
+//struct PointsView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        PointView()
+//        PointsView()
 //    }
 //}

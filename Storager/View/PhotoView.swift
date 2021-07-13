@@ -47,7 +47,7 @@ struct PhotoView: View {
                     }) {
                         if let points = self.photo.points {
                             ForEach(Array(points as Set), id: \.self) { point in
-                                NavigationLink(destination: Text("Single point view")) {
+                                NavigationLink(destination: SinglePointView(point: point as! Point)) {
                                     HStack {
                                         Circle()
                                             .stroke(lineWidth: 3.0)
@@ -72,7 +72,7 @@ struct PhotoView: View {
 //            }
         }
         .background (
-            NavigationLink(destination: PointView(photo: photo), isActive: $addNewItem) {
+            NavigationLink(destination: PointsView(photo: photo), isActive: $addNewItem) {
                 EmptyView()
             }
         )

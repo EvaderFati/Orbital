@@ -258,8 +258,8 @@ func dateToString(_ date: Date?) -> String {
 }
 
 
-struct FolderView_Previews: PreviewProvider {
-    static var previews: some View {
-        CreateFolderView(newFolderName: .constant("Folder"), newFolderIsLocked: .constant(true))
-    }
-}
+//struct FolderView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CreateFolderView(newFolderName: .constant("Folder"), newFolderIsLocked: .constant(true))
+//    }
+//}

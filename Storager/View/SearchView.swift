@@ -29,7 +29,7 @@ struct SearchView: View {
             List {
                 Section(header: Text("Points")) {
                     ForEach(points.filter( { $0.name!.contains(searchText) || searchText.isEmpty })) { point in
-                        NavigationLink(destination: Text("Hello")) {
+                        NavigationLink(destination: SinglePointView(point: point)) {
                             PointListEntry(point: point)
                         }
                     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		45229F28269D9CE60046B3BA /* SinglePointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45229F27269D9CE60046B3BA /* SinglePointView.swift */; };
 		452E69FE2693EB6100E454A0 /* StoragerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E69FD2693EB6100E454A0 /* StoragerApp.swift */; };
 		452E6A002693EB6100E454A0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E69FF2693EB6100E454A0 /* ContentView.swift */; };
 		452E6A022693EB6100E454A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 452E6A012693EB6100E454A0 /* Assets.xcassets */; };
@@ -20,7 +21,7 @@
 		452E6A1D2693EBC300E454A0 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E6A192693EBC300E454A0 /* Point.swift */; };
 		452E6A1E2693EBC300E454A0 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E6A1A2693EBC300E454A0 /* PhotoPicker.swift */; };
 		452E6A272693EBD700E454A0 /* BrowseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E6A202693EBD700E454A0 /* BrowseView.swift */; };
-		452E6A282693EBD700E454A0 /* PointView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E6A212693EBD700E454A0 /* PointView.swift */; };
+		452E6A282693EBD700E454A0 /* PointsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E6A212693EBD700E454A0 /* PointsView.swift */; };
 		452E6A292693EBD700E454A0 /* PhotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E6A222693EBD700E454A0 /* PhotoView.swift */; };
 		452E6A2A2693EBD700E454A0 /* UserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E6A232693EBD700E454A0 /* UserView.swift */; };
 		452E6A2B2693EBD700E454A0 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E6A252693EBD700E454A0 /* SearchBar.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		45229F27269D9CE60046B3BA /* SinglePointView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePointView.swift; sourceTree = "<group>"; };
 		452E69FA2693EB6100E454A0 /* Storager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Storager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		452E69FD2693EB6100E454A0 /* StoragerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoragerApp.swift; sourceTree = "<group>"; };
 		452E69FF2693EB6100E454A0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,7 +46,7 @@
 		452E6A192693EBC300E454A0 /* Point.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
 		452E6A1A2693EBC300E454A0 /* PhotoPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		452E6A202693EBD700E454A0 /* BrowseView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowseView.swift; sourceTree = "<group>"; };
-		452E6A212693EBD700E454A0 /* PointView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointView.swift; sourceTree = "<group>"; };
+		452E6A212693EBD700E454A0 /* PointsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointsView.swift; sourceTree = "<group>"; };
 		452E6A222693EBD700E454A0 /* PhotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoView.swift; sourceTree = "<group>"; };
 		452E6A232693EBD700E454A0 /* UserView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserView.swift; sourceTree = "<group>"; };
 		452E6A252693EBD700E454A0 /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -132,12 +134,13 @@
 			isa = PBXGroup;
 			children = (
 				452E6A202693EBD700E454A0 /* BrowseView.swift */,
-				452E6A212693EBD700E454A0 /* PointView.swift */,
+				452E6A212693EBD700E454A0 /* PointsView.swift */,
 				452E6A222693EBD700E454A0 /* PhotoView.swift */,
 				452E6A232693EBD700E454A0 /* UserView.swift */,
 				452E6A242693EBD700E454A0 /* Components */,
 				452E6A262693EBD700E454A0 /* FolderView.swift */,
 				459207B0269B089A00A311D9 /* SearchView.swift */,
+				45229F27269D9CE60046B3BA /* SinglePointView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -220,13 +223,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				452E6A1C2693EBC300E454A0 /* Photo.swift in Sources */,
+				45229F28269D9CE60046B3BA /* SinglePointView.swift in Sources */,
 				452E6A292693EBD700E454A0 /* PhotoView.swift in Sources */,
 				452E6A2C2693EBD700E454A0 /* FolderView.swift in Sources */,
 				452E6A2B2693EBD700E454A0 /* SearchBar.swift in Sources */,
 				452E6A0A2693EB6100E454A0 /* Storager.xcdatamodeld in Sources */,
 				452E6A072693EB6100E454A0 /* Persistence.swift in Sources */,
 				459207B1269B089A00A311D9 /* SearchView.swift in Sources */,
-				452E6A282693EBD700E454A0 /* PointView.swift in Sources */,
+				452E6A282693EBD700E454A0 /* PointsView.swift in Sources */,
 				452E6A002693EB6100E454A0 /* ContentView.swift in Sources */,
 				452E6A142693EBBB00E454A0 /* PointVM.swift in Sources */,
 				452E6A1D2693EBC300E454A0 /* Point.swift in Sources */,

@@ -22,6 +22,7 @@ struct FolderView: View {
     @State private var newFolderIsLocked = false
     @State private var newPhoto: PhotoVM = PhotoVM()
     @State private var isDuplicateName = false
+    @State private var searchText = ""
 
     let parent: Folder?
     
@@ -90,7 +91,7 @@ struct FolderView: View {
                         .navigationBarTitle("Edit Folder", displayMode: .inline)
                         .navigationBarItems(leading: Button("Cancel") {
                             isAddingFolder = false
-                        }, trailing: Button(action: addFolder, label: { Text("Done") }).alert("This name has already existed",isPresented: $isDuplicateName){Button("Return to main page"){isAddingFolder = false}
+                        }, trailing: Button(action: addFolder, label: { Text("Done") }).alert("This folder has already existed",isPresented: $isDuplicateName){Button("Return to main page"){isAddingFolder = false}
                             
                         })
                 } else {

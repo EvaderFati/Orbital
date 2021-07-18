@@ -91,9 +91,8 @@ struct FolderView: View {
                         .navigationBarTitle("Edit Folder", displayMode: .inline)
                         .navigationBarItems(leading: Button("Cancel") {
                             isAddingFolder = false
-                        }, trailing: Button(action: addFolder, label: { Text("Done") }).alert("This folder has already existed",isPresented: $isDuplicateName){Button("Return to main page"){isAddingFolder = false}
-                            
-                        })
+                        }, trailing: Button(action: addFolder, label: { Text("Done") }).alert(isPresented:$isDuplicateName){Alert(title: Text("This folder has already existed"),
+                                                                                                                                  dismissButton: .default(Text("Rename")))}
                 } else {
                     // Fallback on earlier versions
                 }

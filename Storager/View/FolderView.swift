@@ -18,6 +18,7 @@ struct FolderView: View {
     @State private var isAddingPhoto = false
     @State private var isAddingFolder = false
     @State private var isImportingPhoto = false
+    @State private var isTakingPhoto = false
     @State private var newFolderName = ""
     @State private var newFolderIsLocked = false
     @State private var newPhoto: PhotoVM = PhotoVM()
@@ -78,7 +79,7 @@ struct FolderView: View {
                             ),
                             .default(
                                 Text("Take new photos"),
-                                action: {}
+                                action: { isTakingPhoto = true }
                             )
                         ]
             )
@@ -95,11 +96,9 @@ struct FolderView: View {
         .sheet(isPresented: $isImportingPhoto) {
             PhotoPicker(photo: newPhoto, folder: parent)
         }
-//        .background(
-//            NavigationLink(destination: PhotoView(photo: Photo.createPhoto(image: inputImage!, folder: parent, context: viewContext)), isActive: .constant(inputImage != nil)) {
-//                EmptyView()
-//            }
-//        )
+        .sheet(isPresented: $isTakingPhoto) {
+            CameraPicker(photo: newPhoto, folder: parent)
+        }
     }
     
     private func addFolder() {

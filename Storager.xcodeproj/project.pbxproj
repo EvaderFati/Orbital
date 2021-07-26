@@ -27,6 +27,7 @@
 		452E6A2B2693EBD700E454A0 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E6A252693EBD700E454A0 /* SearchBar.swift */; };
 		452E6A2C2693EBD700E454A0 /* FolderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452E6A262693EBD700E454A0 /* FolderView.swift */; };
 		459207B1269B089A00A311D9 /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459207B0269B089A00A311D9 /* SearchView.swift */; };
+		45A8154626AE93FF005AE46D /* CameraPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A8154526AE93FF005AE46D /* CameraPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		45807A9326942FD900A8E91D /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		459207AF2696B08400A311D9 /* Storager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Storager.entitlements; sourceTree = "<group>"; };
 		459207B0269B089A00A311D9 /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		45A8154526AE93FF005AE46D /* CameraPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +128,7 @@
 				452E6A182693EBC300E454A0 /* Photo.swift */,
 				452E6A192693EBC300E454A0 /* Point.swift */,
 				452E6A1A2693EBC300E454A0 /* PhotoPicker.swift */,
+				45A8154526AE93FF005AE46D /* CameraPicker.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				452E6A2B2693EBD700E454A0 /* SearchBar.swift in Sources */,
 				452E6A0A2693EB6100E454A0 /* Storager.xcdatamodeld in Sources */,
 				452E6A072693EB6100E454A0 /* Persistence.swift in Sources */,
+				45A8154626AE93FF005AE46D /* CameraPicker.swift in Sources */,
 				459207B1269B089A00A311D9 /* SearchView.swift in Sources */,
 				452E6A282693EBD700E454A0 /* PointsView.swift in Sources */,
 				452E6A002693EB6100E454A0 /* ContentView.swift in Sources */,

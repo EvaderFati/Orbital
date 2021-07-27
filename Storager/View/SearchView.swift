@@ -27,7 +27,7 @@ struct SearchView: View {
         VStack {
             SearchBar(searchText: $searchText)
             List {
-                Section(header: Text("Points")) {
+                Section(header: Text("Items")) {
                     ForEach(points.filter( { $0.name!.contains(searchText) || searchText.isEmpty })) { point in
                         NavigationLink(destination: SinglePointView(point: point)) {
                             PointListEntry(point: point)

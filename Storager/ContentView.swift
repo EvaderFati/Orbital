@@ -10,6 +10,19 @@ import CoreData
 import AuthenticationServices
 
 struct ContentView: View {
+    @AppStorage("walkthroughPage") var currentPage = 1
+    let totalPages = 3
+    
+    var body: some View {
+        if currentPage > totalPages {
+            HomeView()
+        } else {
+            OnboardingView()
+        }
+    }
+}
+
+struct HomeView: View {
     @Environment(\.managedObjectContext) private var viewContext
     @State private var selection = 0
 
@@ -20,17 +33,6 @@ struct ContentView: View {
     private var folders: FetchedResults<Folder>
 
     var body: some View {
-//        NavigationView{
-//            List {
-//                ForEach(folders) { folder in
-//                    Text("Folder of \(folder.name!)")
-//                }
-//                .onDelete(perform: deleteItems)
-//            }
-//            .navigationBarItems(trailing: Button("Add") {
-//                addItem()
-//            })
-//        }
         TabView(selection: $selection) {
             NavigationView { FolderView(nil) }
                 .navigationViewStyle(StackNavigationViewStyle()) // Fixing displayModeButtonItem assert
@@ -49,16 +51,16 @@ struct ContentView: View {
                         .font(.system(size: 10))
                 }
                 .tag(1)
-            NavigationView { UserView(
-                loggedIn: checkAutoLogin(),
-                userName: UserDefaults.standard.string(forKey: "AppleUserFirstName") ?? "") }
-                .tabItem {
-                    Image(systemName: "person.fill")
-                        .font(.system(size: 24))
-                    Text("User")
-                        .font(.system(size: 10))
-                }
-                .tag(2)
+//            NavigationView { UserView(
+//                loggedIn: checkAutoLogin(),
+//                userName: UserDefaults.standard.string(forKey: "AppleUserFirstName") ?? "") }
+//                .tabItem {
+//                    Image(systemName: "person.fill")
+//                        .font(.system(size: 24))
+//                    Text("User")
+//                        .font(.system(size: 10))
+//                }
+//                .tag(2)
         }
     }
 
@@ -75,36 +77,6 @@ struct ContentView: View {
         }
         return userId == "" ? false : true
     }
-//    private func addItem() {
-//        withAnimation {
-//            let newFolder = Folder(context: viewContext)
-//            newFolder.name = "Folder Name"
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                // Replace this implementation with code to handle the error appropriately.
-//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
-//    }
-//
-//    private func deleteItems(offsets: IndexSet) {
-//        withAnimation {
-//            offsets.map { folders[$0] }.forEach(viewContext.delete)
-//
-//            do {
-//                try viewContext.save()
-//            } catch {
-//                // Replace this implementation with code to handle the error appropriately.
-//                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-//                let nsError = error as NSError
-//                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-//            }
-//        }
-//    }
 }
 
 extension View {

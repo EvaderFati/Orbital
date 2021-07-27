@@ -32,6 +32,10 @@ struct FolderView: View {
         _folders = FetchRequest(fetchRequest: requestFolder, animation: .default)
         _photos = FetchRequest(fetchRequest: requestPhoto, animation: .default)
         self.parent = parent
+        let appearance = UINavigationBarAppearance()
+        appearance.shadowColor = .clear
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
     var body: some View {
@@ -51,6 +55,7 @@ struct FolderView: View {
                 }
                 .onDelete(perform: deletePhotos)
             }
+            .listStyle(InsetListStyle())
         }
         .navigationBarTitle(parent?.name ?? "Browse", displayMode: .inline)
         .toolbar {
@@ -224,6 +229,7 @@ struct FolderListEntry: View {
                     .font(.system(size: 15))
                     .foregroundColor(.secondary)
             }.padding()
+            .frame(height: 52)
         }
     }
 }
@@ -243,6 +249,7 @@ struct PhotoListEntry: View {
                     .font(.system(size: 15))
                     .foregroundColor(.secondary)
             }.padding()
+            .frame(height: 52)
         }
     }
 }

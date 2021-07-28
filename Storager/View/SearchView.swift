@@ -63,7 +63,7 @@ struct PointListEntry: View {
                 .stroke(lineWidth: 3.0)
                 .frame(width: 20, height: 20)
                 .foregroundColor(point.color)
-            Text((point).name!)
+            Text((point).name ?? "Unnamed point")
             Spacer()
         }
     }

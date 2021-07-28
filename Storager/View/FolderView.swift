@@ -23,6 +23,9 @@ struct FolderView: View {
     @State private var newFolderIsLocked = false
     @State private var newPhoto: PhotoVM = PhotoVM()
     @State private var searchText = ""
+    
+    @State private var isEditingFolder = false
+    @State private var folderId: UUID?
 
     let parent: Folder?
     
@@ -42,20 +45,61 @@ struct FolderView: View {
         VStack {
             SearchBar(searchText: $searchText)
             List {
-                ForEach(folders.filter({ $0.name!.contains(searchText) || searchText.isEmpty })) { folder in
+                ForEach(folders.filter({ $0.name!.contains(searchText) || searchText.isEmpty }), id: \.id) { folder in
                     NavigationLink(destination: FolderView(folder)) {
                         FolderListEntry(folder: folder)
+                            .contextMenu {
+                                VStack {
+                                    Button(action: {
+                                        self.newFolderName = folder.name!
+                                        self.newFolderIsLocked = folder.isLocked
+                                        self.folderId = folder.id!
+                                        self.isEditingFolder = true
+                                        self.isAddingFolder = true
+                                    }) {
+                                        Label("Edit", systemImage: "pencil.circle")
+                                    }
+                                    // TODO: Info sheet
+                                    Button(action: {}) {
+                                        Label("Info", systemImage: "info.circle")
+                                    }
+                                    Divider()
+                                    Button(action: {
+                                        print(folders.firstIndex(of: folder) ?? -1)
+                                        deleteFolders(offsets: IndexSet(integer: folders.firstIndex(of: folder) ?? -1))
+                                    }) {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                    // TODO: for iOS 15 and above
+//                                    Button(role: .destructive) {
+//                                        // delete action
+//                                    } label: {
+//                                        Label("Delete", systemImage: "trash")
+//                                            .foregroundColor(.red)
+//                                    }
+                                }
+                            }
                     }
                 }
                 .onDelete(perform: deleteFolders)
                 ForEach(photos.filter({ $0.name!.contains(searchText) || searchText.isEmpty })) { photo in
                     NavigationLink(destination: PhotoView(photo: photo)) {
                         PhotoListEntry(photo: photo)
+                            .contextMenu {
+                                VStack {
+                                    Button(action: {}) {
+                                        HStack {
+                                            Text("Edit")
+                                            Image(systemName: "pencil.circle")
+                                        }
+                                    }
+                                }
+                            }
                     }
                 }
                 .onDelete(perform: deletePhotos)
             }
-            .listStyle(InsetListStyle())
+            .listStyle(InsetGroupedListStyle())
         }
         .navigationBarTitle(parent?.name ?? "Browse", displayMode: .inline)
         .toolbar {
@@ -92,10 +136,15 @@ struct FolderView: View {
         .sheet(isPresented: $isAddingFolder) {
             NavigationView {
                 CreateFolderView(newFolderName: $newFolderName, newFolderIsLocked: $newFolderIsLocked)
-                    .navigationBarTitle("Edit Folder", displayMode: .inline)
+                    .navigationBarTitle("New Folder", displayMode: .inline)
                     .navigationBarItems(leading: Button("Cancel") {
                         isAddingFolder = false
-                    }, trailing: Button(action: addFolder, label: { Text("Done") }))
+                        isEditingFolder = false
+                        newFolderName = ""
+                        newFolderIsLocked = false
+                    }, trailing: Button("Done") {
+                        isEditingFolder ? editFolder() : addFolder()
+                    })
             }
         }
         .sheet(isPresented: $isImportingPhoto) {
@@ -111,22 +160,38 @@ struct FolderView: View {
             let newFolder = Folder(context: viewContext)
             Folder.createFolder(newFolder, name: newFolderName, isLocked: newFolderIsLocked, parent: self.parent)
             isAddingFolder = false
+            newFolderName = ""
+            newFolderIsLocked = false
 
             do {
                 try viewContext.save()
             } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nsError = error as NSError
                 fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
             }
         }
     }
     
+    private func editFolder() {
+        withAnimation {
+            let folder = folders.first(where: { $0.id == folderId })
+            if folder != nil {
+                folder!.name = newFolderName
+                folder!.isLocked = newFolderIsLocked
+                Folder.update(from: folder!, context: viewContext)
+                print("folder edited")
+            }
+            newFolderName = ""
+            newFolderIsLocked = false
+            isEditingFolder = false
+            isAddingFolder = false
+        }
+    }
+    
     private func deletePhotos(offsets: IndexSet) {
         withAnimation {
             offsets.map { photos[$0] }.forEach { photo in
-                (photo ).points?.forEach{ viewContext.delete($0 as! NSManagedObject) }
+                photo.points?.forEach{ viewContext.delete($0 as! NSManagedObject) }
                 viewContext.delete(photo as NSManagedObject)
             }
             
@@ -143,8 +208,10 @@ struct FolderView: View {
         withAnimation {
             offsets.map { folders[$0] }.forEach { folder in
                 if (folder.numOfItems == 0) {
+                    print("No subfolder")
                     viewContext.delete(folder)
                 } else {
+                    print("\(folder.numOfItems) subfolders")
                     deleteSubFolders(parent: folder)
                 }
             }
@@ -161,17 +228,21 @@ struct FolderView: View {
     }
     
     private func deleteSubFolders(parent folder: Folder) {
+        // no subfolder (but maybe has subphotos)
         if (folder.children.count == 0) {
-            if (folder.photos.count == 0) {
+            if (folder.photos.count == 0) { // no subphoto
                 viewContext.delete(folder)
                 return
-            } else {
+            } else { // has subphotos
                 folder.photos.forEach { photo in
                     (photo as! Photo).points?.forEach{ viewContext.delete($0 as! NSManagedObject) }
                     viewContext.delete(photo as! NSManagedObject)
+                    viewContext.delete(folder)
                 }
             }
-        } else {
+        }
+        // has subfolders
+        else {
             folder.children.forEach { child in
                 deleteSubFolders(parent: child as! Folder)
             }
@@ -196,17 +267,6 @@ struct CreateFolderView: View {
             }
         }
         .listStyle(InsetGroupedListStyle())
-//        VStack {
-//            Text("Name")
-//                .font(.headline)
-//            Section {
-//                TextField("Folder Name", text: $newFolderName)
-//            }
-//            List {
-//
-//                Toggle("Require Password", isOn: $newFolderIsLocked)
-//            }
-//        }
     }
 }
 

@@ -10,6 +10,7 @@ import CoreData
 
 extension Folder {
     static func createFolder(_ newFolder: Folder, name: String, isLocked: Bool, parent: Folder?) {
+        newFolder.id = UUID()
         newFolder.name = name
         newFolder.date = Date()
         newFolder.parent = parent
@@ -34,6 +35,11 @@ extension Folder {
         let request = NSFetchRequest<Folder>(entityName: "Folder")
         request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
         return request
+    }
+    
+    static func update(from folder: Folder, context: NSManagedObjectContext) {
+        folder.objectWillChange.send()
+        try? context.save()
     }
     
     var children: NSSet {

@@ -27,7 +27,7 @@ struct PhotoView: View {
                 }
                 .frame(width: geo.size.width)
                 
-                TextField("Enter name", text: $photo.name_)
+                TextField("Enter name", text: $name)
                     .padding(EdgeInsets(top: 10, leading: 30, bottom: 0, trailing: 0))
                     .font(.system(size: 32, weight: .bold, design: .default))
                 Divider()
@@ -53,7 +53,7 @@ struct PhotoView: View {
                                             .stroke(lineWidth: 3.0)
                                             .frame(width: 20, height: 20)
                                             .foregroundColor((point as! Point).color)
-                                        Text((point as! Point).name!)
+                                        Text((point as! Point).name ?? "")
                                         Spacer()
                                     }
                                 }
@@ -64,6 +64,7 @@ struct PhotoView: View {
                 .listStyle(InsetGroupedListStyle())
             }
             .navigationBarItems(trailing: Button("Done") {
+                photo.name_ = self.name
                 Photo.update(from: photo, context: viewContext)
                 presentationMode.wrappedValue.dismiss()
             })
@@ -76,6 +77,9 @@ struct PhotoView: View {
                 EmptyView()
             }
         )
+        .onAppear {
+            name = photo.name_
+        }
     }
 }
 

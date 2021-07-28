@@ -24,8 +24,13 @@ struct FolderView: View {
     @State private var newPhoto: PhotoVM = PhotoVM()
     @State private var searchText = ""
     
+    // editing folder
     @State private var isEditingFolder = false
     @State private var folderId: UUID?
+    
+    // selecting folders or photos
+    @State private var isSelecting = false
+    @State private var multiSelection = Set<NSManagedObject>()
 
     let parent: Folder?
     
@@ -44,7 +49,7 @@ struct FolderView: View {
     var body: some View {
         VStack {
             SearchBar(searchText: $searchText)
-            List {
+            List(selection: $multiSelection) {
                 ForEach(folders.filter({ $0.name!.contains(searchText) || searchText.isEmpty }), id: \.id) { folder in
                     NavigationLink(destination: FolderView(folder)) {
                         FolderListEntry(folder: folder)
@@ -100,20 +105,32 @@ struct FolderView: View {
                 .onDelete(perform: deletePhotos)
             }
             .listStyle(InsetGroupedListStyle())
+            // select items
+            .environment(\.editMode, .constant(self.isSelecting ? EditMode.active : EditMode.inactive))
+            .animation(Animation.spring())
         }
         .navigationBarTitle(parent?.name ?? "Browse", displayMode: .inline)
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Menu {
-                    Button(action: { isAddingPhoto = true}) {
-                        Label("New Photo", systemImage: "photo")
+                if self.isSelecting {
+                    Button("Done") {
+                        self.isSelecting.toggle()
                     }
-                    Button(action: { isAddingFolder = true }) {
-                        Label("New Folder", systemImage: "folder.badge.plus")
+                } else {
+                    Menu {
+                        Button(action: { isAddingPhoto = true}) {
+                            Label("New Photo", systemImage: "photo")
+                        }
+                        Button(action: { isAddingFolder = true }) {
+                            Label("New Folder", systemImage: "folder.badge.plus")
+                        }
+                        Button(action: { isSelecting.toggle() }) {
+                            Label("Select", systemImage: "checkmark.circle")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                            .font(.system(size: 22))
                     }
-                } label: {
-                    Image(systemName: "ellipsis.circle")
-                        .font(.system(size: 22))
                 }
             }
         }
